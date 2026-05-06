@@ -38,9 +38,9 @@ function Index() {
       <FixedParallax image={h1} height="100vh" overlay="soft">
         <div className="mx-auto max-w-[1400px] w-full h-full px-5 md:px-12 grid grid-cols-12 gap-6 md:gap-8 items-center pt-[var(--nav-h)] md:pt-0">
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.4, delay: 0.3 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
             className="col-span-12 md:col-span-7 text-center md:text-left"
             style={{ maxWidth: "90%", marginInline: "auto" }}
           >
@@ -55,23 +55,22 @@ function Index() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 60 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.6, delay: 0.6, ease: [0.2, 0.8, 0.2, 1] }}
+            transition={{ duration: 0.65, delay: 0.1, ease: [0.2, 0.8, 0.2, 1] }}
             className="col-span-12 md:col-span-5 flex justify-center md:justify-end mt-6 md:mt-0"
           >
-            <div className="relative md:pr-20">
+            <div className="relative md:pr-[60px]">
               <div
-                className="polaroid animate-float"
+                className="polaroid animate-float w-[200px] md:w-[300px]"
                 style={{
-                  width: "min(180px, 50vw)",
-                  padding: "8px",
-                  ["--rot" as never]: "3deg",
-                  transform: "rotate(3deg)",
-                  boxShadow: "0 20px 40px rgba(0,0,0,0.15)",
+                  padding: "10px",
+                  ["--rot" as never]: "5deg",
+                  transform: "rotate(5deg)",
+                  boxShadow: "0 25px 50px rgba(0,0,0,0.18)",
                 }}
               >
-                <div style={{ width: "100%", aspectRatio: "1 / 1.25", overflow: "hidden" }}>
+                <div className="h-[250px] md:h-[380px] w-full overflow-hidden">
                   <img src={g2} alt="" className="w-full h-full object-cover" />
                 </div>
               </div>

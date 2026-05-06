@@ -39,7 +39,7 @@ export function FixedParallax({
           backgroundImage: `url(${image})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
-          animation: "parallaxZoom 14s ease-in-out infinite alternate",
+          animation: "parallaxZoom 9s ease-in-out infinite alternate",
           willChange: "transform",
         }}
       />
