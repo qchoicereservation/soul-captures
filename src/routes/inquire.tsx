@@ -85,7 +85,7 @@ function Inquire() {
               </motion.p>
 
               {/* Polaroid stack */}
-              <div className="relative mt-16 hidden md:block" style={{ width: 360, height: 380 }}>
+              <div className="relative mt-12 md:mt-16 mx-auto md:mx-0" style={{ width: 360, maxWidth: "100%", height: 380 }}>
                 {/* BACK switching */}
                 <div
                   className="polaroid absolute animate-float grain-overlay"
@@ -94,8 +94,8 @@ function Inquire() {
                     padding: "10px",
                     left: 0,
                     top: 0,
-                    transform: "rotate(-4deg)",
-                    ["--rot" as never]: "-4deg",
+                    transform: "rotate(-2deg)",
+                    ["--rot" as never]: "-2deg",
                     boxShadow: "0 20px 40px rgba(0,0,0,0.2)",
                     zIndex: 1,
                     overflow: "hidden",
@@ -110,13 +110,13 @@ function Inquire() {
                         initial={{ opacity: 0, scale: 1.05 }}
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0 }}
-                        transition={{ duration: 1.2, ease: [0.4, 0, 0.2, 1] }}
+                        transition={{ duration: 0.7, ease: "easeInOut" }}
                         className="absolute inset-0 w-full h-full object-cover"
                       />
                     </AnimatePresence>
                   </div>
                 </div>
-                {/* FRONT static */}
+                {/* FRONT static — black frame */}
                 <div
                   className="polaroid absolute animate-float"
                   style={{
@@ -124,11 +124,12 @@ function Inquire() {
                     padding: "10px",
                     right: -40,
                     bottom: -30,
-                    transform: "rotate(5deg)",
-                    ["--rot" as never]: "5deg",
-                    boxShadow: "0 20px 40px rgba(0,0,0,0.2)",
+                    transform: "rotate(3deg)",
+                    ["--rot" as never]: "3deg",
+                    boxShadow: "0 20px 40px rgba(0,0,0,0.25)",
                     zIndex: 2,
                     animationDelay: "1.2s",
+                    background: "#111",
                   }}
                 >
                   <div style={{ width: "100%", height: 300, overflow: "hidden" }}>

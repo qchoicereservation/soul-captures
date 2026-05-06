@@ -115,7 +115,7 @@ export function StackedPolaroids({
               initial={{ opacity: 0, scale: 1.05 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 1 }}
-              transition={{ duration: 1.2, ease: [0.4, 0, 0.2, 1] }}
+              transition={{ duration: 0.7, ease: "easeInOut" }}
               className="absolute inset-0 w-full h-full object-cover"
             />
           </AnimatePresence>
@@ -133,6 +133,7 @@ export function StackedPolaroids({
           ["--rot" as never]: `${frontRotate}deg`,
           zIndex: 2,
           animationDelay: "1.2s",
+          background: "#111",
         }}
       >
         <div style={{ width: "100%", height: frontSize.h, overflow: "hidden" }}>

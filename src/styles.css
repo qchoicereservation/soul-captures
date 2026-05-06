@@ -90,12 +90,36 @@
     h1 .font-script, h2 .font-script { font-size: clamp(28px, 8vw, 32px) !important; }
     p, body { font-size: 13px; }
   }
+
+  /* laptop typography refinement (1024–1440px) */
+  @media (min-width: 1024px) and (max-width: 1440px) {
+    h1 { font-size: clamp(44px, 4.2vw, 52px) !important; line-height: 1.1 !important; }
+    h2 { font-size: clamp(32px, 3vw, 38px) !important; line-height: 1.15 !important; }
+    h3 { font-size: 24px !important; line-height: 1.2 !important; }
+    h1 .font-script, h2 .font-script { font-size: clamp(28px, 2.6vw, 32px) !important; }
+    p { font-size: 14px; }
+  }
 }
 
 @layer utilities {
   .font-script { font-family: var(--font-script); }
   .font-serif { font-family: var(--font-serif); }
   .tracking-luxe { letter-spacing: 0.35em; }
+
+  /* Premium calligraphic highlight */
+  .highlight-script {
+    font-family: var(--font-script);
+    font-size: 1.2em;
+    color: #6f6a64;
+    letter-spacing: 1px;
+    display: inline-block;
+    transform: translateY(3px);
+  }
+
+  @keyframes parallaxZoom {
+    0%   { transform: scale(1); }
+    100% { transform: scale(1.08); }
+  }
 
   @media (max-width: 767px) {
     section.py-32, section.lg\:py-40, section.py-40 { padding-top: 64px !important; padding-bottom: 64px !important; }
