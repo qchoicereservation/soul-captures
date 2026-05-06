@@ -75,16 +75,25 @@ function Index() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 60, rotate: 12 }}
-            animate={{ opacity: 1, y: 0, rotate: 5 }}
+            initial={{ opacity: 0, y: 60 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.6, delay: 0.6, ease: [0.2, 0.8, 0.2, 1] }}
-            className="hidden md:flex col-span-5 justify-center"
+            className="hidden md:block col-span-5"
           >
-            <div className="polaroid animate-float" style={{ width: 280, ["--rot" as never]: "5deg" }}>
-              <div style={{ width: "100%", height: 340, overflow: "hidden" }}>
-                <img src={g2} alt="" className="w-full h-full object-cover" />
+            <div className="relative h-full flex items-center justify-end" style={{ paddingRight: 80 }}>
+              <div
+                className="polaroid animate-float"
+                style={{
+                  width: 260,
+                  padding: "10px 10px 10px 10px",
+                  ["--rot" as never]: "5deg",
+                  transform: "rotate(5deg)",
+                }}
+              >
+                <div style={{ width: "100%", height: 320, overflow: "hidden" }}>
+                  <img src={g2} alt="" className="w-full h-full object-cover" />
+                </div>
               </div>
-              <div className="font-script text-center text-base mt-3 text-foreground/80">forever, yours</div>
             </div>
           </motion.div>
         </div>
