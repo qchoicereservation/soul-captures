@@ -106,6 +106,21 @@
   .font-serif { font-family: var(--font-serif); }
   .tracking-luxe { letter-spacing: 0.35em; }
 
+  /* Premium calligraphic highlight */
+  .highlight-script {
+    font-family: var(--font-script);
+    font-size: 1.2em;
+    color: #6f6a64;
+    letter-spacing: 1px;
+    display: inline-block;
+    transform: translateY(3px);
+  }
+
+  @keyframes parallaxZoom {
+    0%   { transform: scale(1); }
+    100% { transform: scale(1.08); }
+  }
+
   @media (max-width: 767px) {
     section.py-32, section.lg\:py-40, section.py-40 { padding-top: 64px !important; padding-bottom: 64px !important; }
   }
