@@ -97,6 +97,10 @@
   .font-serif { font-family: var(--font-serif); }
   .tracking-luxe { letter-spacing: 0.35em; }
 
+  @media (max-width: 767px) {
+    section.py-32, section.lg\:py-40, section.py-40 { padding-top: 64px !important; padding-bottom: 64px !important; }
+  }
+
   .polaroid {
     background: oklch(0.99 0.005 80);
     padding: 12px 12px 36px 12px;
