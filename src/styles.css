@@ -34,7 +34,7 @@
   --color-blush: var(--blush);
   --color-sand: var(--sand);
   --font-serif: "Playfair Display", serif;
-  --font-script: "Allura", cursive;
+  --font-script: "Pinyon Script", "Allura", cursive;
   --font-sans: "Inter", sans-serif;
 }
 
