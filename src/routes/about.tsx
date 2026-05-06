@@ -2,12 +2,15 @@ import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { FixedParallax } from "@/components/FixedParallax";
 import { Polaroid } from "@/components/Polaroid";
 import portrait from "@/assets/about-portrait.jpg";
+import h2 from "@/assets/hero-2.jpg";
+import h3 from "@/assets/hero-3.jpg";
 import g1 from "@/assets/gallery-1.jpg";
 import g2 from "@/assets/gallery-2.jpg";
-import g6 from "@/assets/gallery-6.jpg";
 import g4 from "@/assets/gallery-4.jpg";
+import g6 from "@/assets/gallery-6.jpg";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -35,39 +38,60 @@ function About() {
     <div className="bg-background text-foreground">
       <Header />
 
-      <section className="pt-40 pb-32">
+      {/* 1 · Parallax Hero */}
+      <FixedParallax image={h3} height="90vh" overlay="soft">
+        <div className="mx-auto max-w-[1400px] w-full h-full px-6 lg:px-12 flex items-end pb-24">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.4, delay: 0.3 }} className="max-w-2xl"
+          >
+            <p className="text-background/80 text-[11px] uppercase tracking-luxe mb-6">— behind the lens</p>
+            <h1 className="font-serif text-background text-5xl md:text-7xl lg:text-8xl leading-[0.95]">
+              I tell <span className="font-script text-6xl md:text-9xl">stories</span><br/>with light.
+            </h1>
+          </motion.div>
+        </div>
+      </FixedParallax>
+
+      {/* 2 · Beige content */}
+      <section className="bg-background py-32">
         <div className="mx-auto max-w-[1400px] px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
           <div className="lg:col-span-7">
-            <p className="text-[11px] uppercase tracking-luxe text-muted-foreground mb-6">— behind the lens</p>
-            <h1 className="font-serif text-5xl md:text-7xl leading-[1.05]">
-              I don't just take<br/>photos, I tell<br/><span className="font-script text-7xl md:text-9xl">stories.</span>
-            </h1>
+            <p className="text-[11px] uppercase tracking-luxe text-muted-foreground mb-6">— hello</p>
+            <h2 className="font-serif text-4xl md:text-6xl leading-[1.05]">
+              I'm <span className="font-script text-5xl md:text-7xl">Camille</span> — photographer, wanderer, quiet observer.
+            </h2>
             <p className="mt-10 max-w-lg text-muted-foreground leading-relaxed">
-              I'm Camille — photographer, wanderer, quiet observer. For over a decade I've followed couples through chapels and cliffsides, mountains and ballrooms, with film cameras and a soft kind of patience.
+              For over a decade I've followed couples through chapels and cliffsides, mountains and ballrooms, with film cameras and a soft kind of patience.
             </p>
           </div>
 
-          <div className="lg:col-span-5 relative h-[640px]">
-            <Polaroid src={portrait} alt="Camille" caption="hello, i'm camille" width={300} rotate={-5}
-              style={{ position: "absolute", top: 20, left: 20, zIndex: 2 }} imageHeight={380} />
-            <Polaroid src={g6} alt="" width={210} rotate={6}
-              style={{ position: "absolute", bottom: 80, right: 0, zIndex: 1 }} imageHeight={260} delay={0.2} />
+          <div className="lg:col-span-5 relative h-[560px]">
+            <Polaroid src={portrait} alt="Camille" caption="hello, i'm camille" width={280} rotate={-5}
+              style={{ position: "absolute", top: 20, left: 20, zIndex: 2 }} imageHeight={350} />
+            <Polaroid src={g6} alt="" width={200} rotate={6}
+              style={{ position: "absolute", bottom: 60, right: 0, zIndex: 1 }} imageHeight={250} delay={0.2} />
             <Polaroid src={g4} alt="" width={170} rotate={-3}
               style={{ position: "absolute", bottom: 0, left: 80, zIndex: 3 }} imageHeight={170} delay={0.35} />
           </div>
         </div>
       </section>
 
-      <section className="py-24 bg-muted/40">
-        <div className="mx-auto max-w-3xl px-6 text-center">
-          <p className="font-serif text-3xl md:text-4xl italic leading-snug">
-            "I believe in golden hours, in long pauses, in the dignity of quiet moments. I believe a wedding photograph should feel less like a document and more like a memory you can hold."
-          </p>
-          <p className="mt-8 font-script text-2xl">— Camille</p>
+      {/* 3 · Parallax break */}
+      <FixedParallax image={h2} height="70vh" overlay="dark">
+        <div className="h-full flex items-center justify-center text-center px-6">
+          <motion.p
+            initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
+            transition={{ duration: 1.4 }}
+            className="font-serif italic text-background text-2xl md:text-4xl max-w-3xl leading-snug"
+          >
+            "I believe in golden hours, in long pauses, in the dignity of quiet moments."
+          </motion.p>
         </div>
-      </section>
+      </FixedParallax>
 
-      <section className="py-32">
+      {/* 4 · Beige timeline */}
+      <section className="bg-background py-32">
         <div className="mx-auto max-w-[1100px] px-6 lg:px-12">
           <p className="text-[11px] uppercase tracking-luxe text-muted-foreground mb-6">— a small timeline</p>
           <h2 className="font-serif text-5xl mb-16">Experience</h2>
@@ -85,10 +109,14 @@ function About() {
         </div>
       </section>
 
-      <section className="py-32">
+      {/* 5 · Parallax */}
+      <FixedParallax image={h3} height="60vh" overlay="soft" />
+
+      {/* 6 · Beige polaroid section */}
+      <section className="bg-background py-32">
         <div className="mx-auto max-w-[1400px] px-6 lg:px-12">
-          <p className="text-[11px] uppercase tracking-luxe text-muted-foreground mb-6">— behind the scenes</p>
-          <div className="relative h-[420px]">
+          <p className="text-[11px] uppercase tracking-luxe text-muted-foreground mb-10">— behind the scenes</p>
+          <div className="relative h-[460px]">
             <Polaroid src={g1} alt="" width={220} rotate={-7} style={{ position: "absolute", top: 0, left: "5%" }} imageHeight={280}/>
             <Polaroid src={g2} alt="" width={250} rotate={4} style={{ position: "absolute", top: 40, left: "30%" }} imageHeight={320} delay={0.1}/>
             <Polaroid src={g4} alt="" width={200} rotate={-3} style={{ position: "absolute", top: 20, left: "55%" }} imageHeight={200} delay={0.2}/>
