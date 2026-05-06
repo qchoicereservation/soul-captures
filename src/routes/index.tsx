@@ -60,18 +60,18 @@ function Index() {
             transition={{ duration: 1.6, delay: 0.6, ease: [0.2, 0.8, 0.2, 1] }}
             className="col-span-12 md:col-span-5 flex justify-center md:justify-end mt-6 md:mt-0"
           >
-            <div className="relative md:pr-20">
+            <div className="relative md:pr-[60px]">
               <div
                 className="polaroid animate-float"
                 style={{
-                  width: "min(180px, 50vw)",
-                  padding: "8px",
-                  ["--rot" as never]: "3deg",
-                  transform: "rotate(3deg)",
-                  boxShadow: "0 20px 40px rgba(0,0,0,0.15)",
+                  width: "min(300px, 60vw)",
+                  padding: "10px",
+                  ["--rot" as never]: "5deg",
+                  transform: "rotate(5deg)",
+                  boxShadow: "0 25px 50px rgba(0,0,0,0.18)",
                 }}
               >
-                <div style={{ width: "100%", aspectRatio: "1 / 1.25", overflow: "hidden" }}>
+                <div style={{ width: "100%", height: "min(380px, 76vw)", overflow: "hidden" }}>
                   <img src={g2} alt="" className="w-full h-full object-cover" />
                 </div>
               </div>
