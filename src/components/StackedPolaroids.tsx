@@ -133,6 +133,7 @@ export function StackedPolaroids({
           ["--rot" as never]: `${frontRotate}deg`,
           zIndex: 2,
           animationDelay: "1.2s",
+          background: "#111",
         }}
       >
         <div style={{ width: "100%", height: frontSize.h, overflow: "hidden" }}>
