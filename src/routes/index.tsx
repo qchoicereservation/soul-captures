@@ -1,19 +1,19 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
+import { useState } from "react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { FixedParallax } from "@/components/FixedParallax";
 import { Polaroid } from "@/components/Polaroid";
 import { TestimonialCarousel } from "@/components/TestimonialCarousel";
-import { ExperienceSection } from "@/components/ExperienceSection";
-import { services } from "@/lib/portfolio-data";
+import { Lightbox } from "@/components/Lightbox";
+import { services, allImages } from "@/lib/portfolio-data";
 import h1 from "@/assets/hero-1.jpg";
 import h2 from "@/assets/hero-2.jpg";
 import h3 from "@/assets/hero-3.jpg";
 import g1 from "@/assets/gallery-1.jpg";
 import g2 from "@/assets/gallery-2.jpg";
 import g3 from "@/assets/gallery-3.jpg";
-import g4 from "@/assets/gallery-4.jpg";
 import g6 from "@/assets/gallery-6.jpg";
 
 export const Route = createFileRoute("/")({
@@ -29,47 +29,58 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
+// Scattered memories config (deterministic)
+const scattered = Array.from({ length: 12 }).map((_, i) => {
+  const seed = i * 9301 + 49297;
+  const r1 = (seed % 233280) / 233280;
+  const r2 = ((seed * 17) % 233280) / 233280;
+  const r3 = ((seed * 31) % 233280) / 233280;
+  const sizes = [160, 220, 280];
+  return {
+    top: 4 + r1 * 80,
+    left: 3 + r2 * 84,
+    rotate: -8 + r3 * 16,
+    width: sizes[i % 3],
+    z: Math.floor(r3 * 12),
+    delay: r1 * 0.5,
+  };
+});
+
 function Index() {
+  const [lightbox, setLightbox] = useState<number | null>(null);
+  const memoryImgs = scattered.map((_, i) => allImages[i % allImages.length]);
+  const lb = memoryImgs.map((src, i) => ({ src, alt: `Memory ${i + 1}` }));
+
   return (
     <div className="bg-background text-foreground">
       <Header />
 
-      {/* ── 1 · HERO PARALLAX ─────────────────────────────── */}
+      {/* ── SECTION 1 · HERO PARALLAX ─────────────────────────────── */}
       <FixedParallax image={h1} height="100vh" overlay="soft">
-        <div className="mx-auto max-w-[1280px] w-full h-full px-6 lg:px-12 grid grid-cols-12 gap-8 items-center">
+        <div className="mx-auto max-w-[1400px] w-full h-full px-6 lg:px-12 grid grid-cols-12 gap-8 items-center">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.4, delay: 0.3 }}
-            className="col-span-12 md:col-span-6"
+            className="col-span-12 md:col-span-7"
           >
-            <span className="block w-20 h-px bg-background/60 mb-8" />
-            <p className="text-background/80 text-[11px] uppercase tracking-luxe mb-8">Maison Lumière · est. 2014</p>
-            <h1
-              className="font-serif text-background leading-[1.1]"
-              style={{ fontSize: "clamp(56px, 7vw, 96px)", maxWidth: 520 }}
-            >
-              Capturing <span className="font-script" style={{ fontSize: "1.1em" }}>love</span>,
-              <br />stories and
-              <br /><span className="font-script" style={{ fontSize: "1.1em" }}>timeless</span> moments.
+            <p className="text-background/80 text-[11px] uppercase tracking-luxe mb-6">Maison Lumière · est. 2014</p>
+            <h1 className="font-serif text-background text-5xl md:text-7xl lg:text-8xl leading-[0.95]">
+              Capturing love,
+              <br />
+              <span className="font-script text-6xl md:text-8xl lg:text-9xl">stories</span> &amp; timeless
+              <br />
+              moments.
             </h1>
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 60 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 60, rotate: 12 }}
+            animate={{ opacity: 1, y: 0, rotate: 5 }}
             transition={{ duration: 1.6, delay: 0.6, ease: [0.2, 0.8, 0.2, 1] }}
-            className="hidden md:flex col-span-6 justify-end"
+            className="hidden md:flex col-span-5 justify-center"
           >
-            <div
-              className="polaroid animate-float"
-              style={{
-                width: 280,
-                ["--rot" as never]: "4deg",
-                transform: "rotate(4deg)",
-                boxShadow: "0 20px 40px rgba(0,0,0,0.15)",
-              }}
-            >
+            <div className="polaroid animate-float" style={{ width: 280, ["--rot" as never]: "5deg" }}>
               <div style={{ width: "100%", height: 340, overflow: "hidden" }}>
                 <img src={g2} alt="" className="w-full h-full object-cover" />
               </div>
@@ -85,18 +96,17 @@ function Index() {
         </motion.div>
       </FixedParallax>
 
-      {/* ── 2 · BEIGE CONTENT ─────────────────────────────── */}
-      <section className="bg-background" style={{ paddingTop: 120, paddingBottom: 120 }}>
-        <div className="mx-auto max-w-[1280px] px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-5">
-            <p className="text-[11px] uppercase tracking-luxe text-muted-foreground mb-6">— a few words</p>
-            <h2 className="font-serif leading-[1.05]" style={{ fontSize: "clamp(44px, 4.5vw, 64px)" }}>
+      {/* ── SECTION 2 · BEIGE CONTENT ─────────────────────────────── */}
+      <section className="bg-background py-32 lg:py-40">
+        <div className="mx-auto max-w-[1400px] px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+          <div className="lg:col-span-6">
+            <p className="text-[11px] uppercase tracking-luxe text-muted-foreground mb-8">— a few words</p>
+            <h2 className="font-serif text-5xl md:text-7xl leading-[1.05]">
               Award-winning
               <br />
-              <span className="font-script" style={{ fontSize: "1.15em" }}>wedding</span> photographer.
+              <span className="font-script text-6xl md:text-8xl">wedding</span> photographer.
             </h2>
-            <span className="divider-sm mt-8" />
-            <p className="mt-8 max-w-md text-base leading-[1.8] text-muted-foreground">
+            <p className="mt-10 max-w-md text-base leading-relaxed text-muted-foreground">
               We don't chase moments — we let them arrive. Editorial in eye, documentary in heart.
               Every frame is grain, light, and the truth of being loved.
             </p>
@@ -105,67 +115,60 @@ function Index() {
             </Link>
           </div>
 
-          <div className="lg:col-span-7 relative" style={{ height: 600 }}>
-            {/* Image 1 — base 320px, -3deg */}
-            <Polaroid src={g2} alt="Bride" caption="alex, tuscany" width={320} rotate={-3}
-              style={{ position: "absolute", top: 40, left: 40, zIndex: 1 }} imageHeight={400} />
-            {/* Image 2 — 260px, 5deg, top-right overlap */}
-            <Polaroid src={g6} alt="Veil" caption="elsa, dolomites" width={260} rotate={5}
-              style={{ position: "absolute", top: -10, right: 60, zIndex: 2 }} imageHeight={320} delay={0.15} />
-            {/* Image 3 — 180px, -6deg, bottom-left */}
-            <Polaroid src={g1} alt="Rings" caption="i do." width={180} rotate={-6}
-              style={{ position: "absolute", bottom: 0, left: 200, zIndex: 3 }} imageHeight={220} delay={0.3} />
+          <div className="lg:col-span-6 relative h-[560px]">
+            <Polaroid src={g2} alt="Bride" caption="alex, tuscany" width={260} rotate={-6}
+              style={{ position: "absolute", top: 20, left: 20, zIndex: 1 }} imageHeight={340} />
+            <Polaroid src={g6} alt="Veil" caption="elsa, dolomites" width={230} rotate={5}
+              style={{ position: "absolute", top: 60, right: 40, zIndex: 2 }} imageHeight={300} delay={0.15} />
+            <Polaroid src={g1} alt="Rings" caption="i do." width={200} rotate={-3}
+              style={{ position: "absolute", bottom: 20, left: 120, zIndex: 3 }} imageHeight={240} delay={0.3} />
           </div>
         </div>
       </section>
 
-      {/* ── 3 · PARALLAX BREAK ───────────────────────────── */}
-      <FixedParallax image={h2} height="70vh" overlay="dark">
+      {/* ── SECTION 3 · PARALLAX TRANSITION ───────────────────────── */}
+      <FixedParallax image={h2} height="80vh" overlay="dark">
         <div className="h-full w-full flex items-center justify-center text-center px-6">
-          <motion.p
-            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }} transition={{ duration: 1.4 }}
-            className="text-background uppercase"
-            style={{ fontSize: 18, letterSpacing: "0.3em" }}
           >
-            Crafted with intention
-          </motion.p>
+            <p className="font-script text-background/90 text-4xl md:text-6xl">a slow afternoon</p>
+            <p className="mt-4 text-background/70 text-[11px] uppercase tracking-luxe">— moments worth keeping</p>
+          </motion.div>
         </div>
       </FixedParallax>
 
-      {/* ── 4 · EXPERIENCE (replaces memories) ───────────── */}
-      <ExperienceSection bigImages={[g2, g4, g6, g1]} smallImage={g3} />
-
-      {/* ── 5 · PARALLAX ─────────────────────────────────── */}
-      <FixedParallax image={h3} height="70vh" overlay="soft" />
-
-      {/* ── 6 · BEIGE · SERVICE GRID ─────────────────────── */}
-      <section className="bg-background" style={{ paddingTop: 120, paddingBottom: 120 }}>
-        <div className="mx-auto max-w-[1280px] px-6 lg:px-12">
-          <div className="text-center mb-16">
-            <p className="text-[11px] uppercase tracking-luxe text-muted-foreground mb-3">02 — what we offer</p>
-            <h2 className="font-serif" style={{ fontSize: "clamp(44px, 5vw, 64px)" }}>
-              A house of <span className="font-script" style={{ fontSize: "1.15em" }}>services</span>
-            </h2>
+      {/* ── SECTION 4 · BEIGE · SERVICE GRID ──────────────────────── */}
+      <section className="bg-background py-32">
+        <div className="mx-auto max-w-[1400px] px-6 lg:px-12">
+          <div className="flex items-end justify-between mb-16">
+            <div>
+              <p className="text-[11px] uppercase tracking-luxe text-muted-foreground mb-3">02 — what we offer</p>
+              <h2 className="font-serif text-5xl md:text-6xl">
+                A house of <span className="font-script text-6xl md:text-7xl">services</span>
+              </h2>
+            </div>
+            <Link to="/portfolio" className="hidden md:inline-block text-[11px] uppercase tracking-luxe border-b border-foreground pb-1">
+              View portfolio
+            </Link>
           </div>
 
           <div className="hairline" />
-          <div className="grid grid-cols-1 md:grid-cols-3 relative" style={{ gap: 0 }}>
+          <div className="grid grid-cols-1 md:grid-cols-3 relative">
             {Object.values(services).map((s, i) => (
               <Link to="/services/$slug" params={{ slug: s.slug }} key={s.slug}
-                className="group block relative" style={{ padding: "60px 30px" }}>
+                className="group block px-0 md:px-8 py-10 relative">
                 {i > 0 && <div className="hidden md:block vrule absolute left-0 top-10 bottom-10" />}
-                <div className="overflow-hidden bg-muted" style={{ height: 260 }}>
+                <div className="aspect-square overflow-hidden bg-muted">
                   <img src={s.hero} alt={s.name} loading="lazy"
                     className="w-full h-full object-cover transition-transform duration-[1400ms] group-hover:scale-105" />
                 </div>
-                <div className="mx-auto" style={{ width: 60, height: 1, background: "var(--color-border)", margin: "20px auto" }} />
-                <h3 className="font-serif text-center" style={{ fontSize: 22 }}>{s.name}</h3>
-                <p className="font-script text-center text-lg text-muted-foreground -mt-1">{s.tagline}</p>
-                <p className="mt-4 text-center text-muted-foreground" style={{ fontSize: 14, lineHeight: 1.7 }}>{s.description}</p>
-                <div className="text-center mt-6">
-                  <span className="inline-block text-[11px] uppercase tracking-luxe border-b border-foreground pb-1">More →</span>
-                </div>
+                <div className="hairline mt-8" />
+                <h3 className="font-serif text-3xl mt-6">{s.name}</h3>
+                <p className="font-script text-xl text-muted-foreground -mt-1">{s.tagline}</p>
+                <p className="mt-4 text-sm text-muted-foreground leading-relaxed">{s.description}</p>
+                <span className="mt-6 inline-block text-[11px] uppercase tracking-luxe border-b border-foreground pb-1">More →</span>
               </Link>
             ))}
           </div>
@@ -173,22 +176,80 @@ function Index() {
         </div>
       </section>
 
-      {/* ── 7 · PARALLAX · TESTIMONIAL ──────────────────── */}
+      {/* ── SECTION 5 · PARALLAX BREAK ────────────────────────────── */}
+      <FixedParallax image={h3} height="70vh" overlay="soft">
+        <div className="h-full w-full flex items-center justify-center text-center">
+          <motion.h3
+            initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
+            transition={{ duration: 1.4 }}
+            className="font-script text-background text-5xl md:text-7xl"
+          >
+            scattered memories
+          </motion.h3>
+        </div>
+      </FixedParallax>
+
+      {/* ── SECTION 6 · BEIGE · MEMORIES (SCATTERED) ──────────────── */}
+      <section className="bg-background py-32">
+        <div className="text-center px-6">
+          <p className="text-[11px] uppercase tracking-luxe text-muted-foreground mb-3">03 — the archive</p>
+          <h2 className="font-serif text-5xl md:text-6xl">
+            Loose <span className="font-script text-6xl md:text-7xl">moments</span>
+          </h2>
+          <p className="mt-6 max-w-md mx-auto text-sm text-muted-foreground">
+            Paper-thin and faintly tilted. Tap any to open.
+          </p>
+        </div>
+
+        <div className="relative mx-auto max-w-[1500px] mt-16 h-[1100px] md:h-[900px]">
+          {scattered.map((p, i) => (
+            <motion.button
+              key={i}
+              initial={{ opacity: 0, y: 30, rotate: p.rotate * 1.5 }}
+              whileInView={{ opacity: 1, y: 0, rotate: p.rotate }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.9, delay: p.delay, ease: [0.2, 0.8, 0.2, 1] }}
+              onClick={() => setLightbox(i)}
+              className="polaroid animate-float absolute"
+              style={{
+                top: `${p.top}%`, left: `${p.left}%`,
+                width: p.width, zIndex: p.z,
+                ["--rot" as never]: `${p.rotate}deg`,
+                animationDelay: `${p.delay}s`,
+              }}
+            >
+              <div style={{ width: "100%", height: p.width * 1.15, overflow: "hidden" }}>
+                <img src={memoryImgs[i]} alt="" loading="lazy" className="w-full h-full object-cover" />
+              </div>
+              <div className="font-script text-center text-sm mt-2 text-foreground/70">
+                no. {String(i + 1).padStart(2, "0")}
+              </div>
+            </motion.button>
+          ))}
+        </div>
+
+        <div className="text-center mt-12">
+          <Link to="/memories" className="text-[11px] uppercase tracking-luxe border-b border-foreground pb-1">
+            See all memories →
+          </Link>
+        </div>
+      </section>
+
+      {/* ── SECTION 7 · PARALLAX · TESTIMONIAL CAROUSEL ───────────── */}
       <FixedParallax image={g3} height="90vh" overlay="dark">
         <div className="h-full w-full flex items-center">
           <TestimonialCarousel />
         </div>
       </FixedParallax>
 
-      {/* ── 8 · BEIGE · CTA ─────────────────────────────── */}
-      <section className="bg-background" style={{ paddingTop: 120, paddingBottom: 120 }}>
+      {/* ── SECTION 8 · BEIGE · CTA ──────────────────────────────── */}
+      <section className="bg-background py-32">
         <div className="mx-auto max-w-[1100px] px-6 lg:px-12 text-center">
           <p className="text-[11px] uppercase tracking-luxe text-muted-foreground mb-6">— let's begin</p>
-          <h2 className="font-serif leading-[1.05]" style={{ fontSize: "clamp(44px, 5.5vw, 72px)" }}>
-            Tell us your <span className="font-script" style={{ fontSize: "1.15em" }}>story</span>.
+          <h2 className="font-serif text-5xl md:text-7xl leading-[1.05]">
+            Tell us your <span className="font-script text-6xl md:text-8xl">story</span>.
           </h2>
-          <span className="divider-sm mx-auto mt-8" />
-          <p className="mt-8 max-w-md mx-auto text-muted-foreground leading-[1.8]">
+          <p className="mt-8 max-w-md mx-auto text-muted-foreground">
             Now booking destinations through 2027. We answer every inquiry personally, within 48 hours.
           </p>
           <Link to="/inquire" className="inline-block mt-12 px-10 py-4 border border-foreground text-[11px] uppercase tracking-luxe hover:bg-foreground hover:text-background transition-colors">
@@ -197,8 +258,13 @@ function Index() {
         </div>
       </section>
 
+      <Lightbox images={lb} index={lightbox}
+        onClose={() => setLightbox(null)}
+        onPrev={() => setLightbox((i) => i === null ? null : (i - 1 + lb.length) % lb.length)}
+        onNext={() => setLightbox((i) => i === null ? null : (i + 1) % lb.length)}
+      />
+
       <Footer />
     </div>
   );
 }
-
