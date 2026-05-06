@@ -35,12 +35,12 @@ function Index() {
       <Header />
 
       {/* ── SECTION 1 · HERO PARALLAX ─────────────────────────────── */}
-      <FixedParallax image={h1} height="100vh" overlay="soft">
+      <FixedParallax image={[h1, h3]} height="100vh" overlay="soft" switchInterval={6500}>
         <div className="mx-auto max-w-[1400px] w-full h-full px-5 md:px-12 grid grid-cols-12 gap-6 md:gap-8 items-center pt-[var(--nav-h)] md:pt-0">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
             className="col-span-12 md:col-span-7 text-center md:text-left"
             style={{ maxWidth: "90%", marginInline: "auto" }}
           >
@@ -55,14 +55,14 @@ function Index() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.65, delay: 0.1, ease: [0.2, 0.8, 0.2, 1] }}
+            transition={{ duration: 0.5, delay: 0.05, ease: "easeOut" }}
             className="col-span-12 md:col-span-5 flex justify-center md:justify-end mt-6 md:mt-0"
           >
             <div className="relative md:pr-[60px]">
               <div
-                className="polaroid animate-float w-[200px] md:w-[300px]"
+                className="polaroid animate-float w-[200px] md:w-[280px]"
                 style={{
                   padding: "10px",
                   ["--rot" as never]: "5deg",
@@ -70,7 +70,7 @@ function Index() {
                   boxShadow: "0 25px 50px rgba(0,0,0,0.18)",
                 }}
               >
-                <div className="h-[250px] md:h-[380px] w-full overflow-hidden">
+                <div className="h-[250px] md:h-[350px] w-full overflow-hidden">
                   <img src={g2} alt="" className="w-full h-full object-cover" />
                 </div>
               </div>

@@ -1,7 +1,7 @@
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Allura&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Pinyon+Script&family=Allura&display=swap");
 
 @custom-variant dark (&:is(.dark *));
 
@@ -34,7 +34,7 @@
   --color-blush: var(--blush);
   --color-sand: var(--sand);
   --font-serif: "Playfair Display", serif;
-  --font-script: "Allura", cursive;
+  --font-script: "Pinyon Script", "Allura", cursive;
   --font-sans: "Inter", sans-serif;
 }
 
@@ -93,11 +93,11 @@
 
   /* laptop typography refinement (1024–1440px) */
   @media (min-width: 1024px) and (max-width: 1440px) {
-    h1 { font-size: clamp(44px, 3.4vw, 48px) !important; line-height: 1.1 !important; letter-spacing: -0.3px !important; }
-    h2 { font-size: clamp(34px, 2.6vw, 38px) !important; line-height: 1.1 !important; letter-spacing: -0.3px !important; }
-    h3 { font-size: 22px !important; line-height: 1.2 !important; }
-    h1 .font-script, h2 .font-script { font-size: clamp(26px, 2.2vw, 28px) !important; }
-    p { font-size: 13.5px; }
+    h1 { font-size: clamp(40px, 3vw, 44px) !important; line-height: 1.1 !important; letter-spacing: -0.4px !important; }
+    h2 { font-size: clamp(30px, 2.4vw, 34px) !important; line-height: 1.1 !important; letter-spacing: -0.3px !important; }
+    h3 { font-size: 20px !important; line-height: 1.2 !important; }
+    h1 .font-script, h2 .font-script { font-size: clamp(24px, 1.9vw, 26px) !important; line-height: 1 !important; }
+    p { font-size: 13px; }
   }
 }
 
@@ -118,7 +118,7 @@
 
   @keyframes parallaxZoom {
     0%   { transform: scale(1); }
-    100% { transform: scale(1.06); }
+    100% { transform: scale(1.04); }
   }
 
   @media (max-width: 767px) {
