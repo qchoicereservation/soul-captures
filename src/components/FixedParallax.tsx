@@ -1,18 +1,16 @@
-import type { CSSProperties, ReactNode } from "react";
+import { useEffect, useState, type CSSProperties, type ReactNode } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
 interface Props {
-  image: string;
+  image: string | string[];
   height?: string;
   children?: ReactNode;
   overlay?: "none" | "soft" | "dark";
   className?: string;
   style?: CSSProperties;
+  switchInterval?: number;
 }
 
-/**
- * Fixed background-attachment parallax.
- * Image stays fixed in viewport while content scrolls past.
- */
 export function FixedParallax({
   image,
   height = "100vh",
@@ -20,7 +18,17 @@ export function FixedParallax({
   overlay = "soft",
   className = "",
   style,
+  switchInterval = 6500,
 }: Props) {
+  const images = Array.isArray(image) ? image : [image];
+  const [i, setI] = useState(0);
+
+  useEffect(() => {
+    if (images.length <= 1) return;
+    const t = setInterval(() => setI((x) => (x + 1) % images.length), switchInterval);
+    return () => clearInterval(t);
+  }, [images.length, switchInterval]);
+
   const overlayClass =
     overlay === "dark"
       ? "bg-gradient-to-b from-foreground/60 via-foreground/40 to-foreground/70"
@@ -34,15 +42,28 @@ export function FixedParallax({
       style={{ height, ...style }}
     >
       <div
-        className="absolute inset-0 parallax-bg"
+        className="absolute inset-0"
         style={{
-          backgroundImage: `url(${image})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          animation: "parallaxZoom 9s ease-in-out infinite alternate",
+          animation: "parallaxZoom 10s ease-in-out infinite alternate",
           willChange: "transform",
         }}
-      />
+      >
+        <AnimatePresence mode="sync">
+          <motion.div
+            key={i}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1, ease: "easeInOut" }}
+            className="absolute inset-0 parallax-bg"
+            style={{
+              backgroundImage: `url(${images[i]})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          />
+        </AnimatePresence>
+      </div>
       {overlay !== "none" && <div className={`absolute inset-0 ${overlayClass}`} />}
       <div className="relative z-10 h-full w-full">{children}</div>
     </section>
