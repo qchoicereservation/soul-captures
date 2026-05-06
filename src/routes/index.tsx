@@ -1,12 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { useState } from "react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { FixedParallax } from "@/components/FixedParallax";
-import { Polaroid } from "@/components/Polaroid";
+import { StackedPolaroids } from "@/components/StackedPolaroids";
+import { ScatterGallery } from "@/components/ScatterGallery";
 import { TestimonialCarousel } from "@/components/TestimonialCarousel";
-import { Lightbox } from "@/components/Lightbox";
 import { services, allImages } from "@/lib/portfolio-data";
 import h1 from "@/assets/hero-1.jpg";
 import h2 from "@/assets/hero-2.jpg";
@@ -14,6 +13,7 @@ import h3 from "@/assets/hero-3.jpg";
 import g1 from "@/assets/gallery-1.jpg";
 import g2 from "@/assets/gallery-2.jpg";
 import g3 from "@/assets/gallery-3.jpg";
+import g5 from "@/assets/gallery-5.jpg";
 import g6 from "@/assets/gallery-6.jpg";
 
 export const Route = createFileRoute("/")({
@@ -29,28 +29,7 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-// Scattered memories config (deterministic)
-const scattered = Array.from({ length: 12 }).map((_, i) => {
-  const seed = i * 9301 + 49297;
-  const r1 = (seed % 233280) / 233280;
-  const r2 = ((seed * 17) % 233280) / 233280;
-  const r3 = ((seed * 31) % 233280) / 233280;
-  const sizes = [160, 220, 280];
-  return {
-    top: 4 + r1 * 80,
-    left: 3 + r2 * 84,
-    rotate: -8 + r3 * 16,
-    width: sizes[i % 3],
-    z: Math.floor(r3 * 12),
-    delay: r1 * 0.5,
-  };
-});
-
 function Index() {
-  const [lightbox, setLightbox] = useState<number | null>(null);
-  const memoryImgs = scattered.map((_, i) => allImages[i % allImages.length]);
-  const lb = memoryImgs.map((src, i) => ({ src, alt: `Memory ${i + 1}` }));
-
   return (
     <div className="bg-background text-foreground">
       <Header />
@@ -75,16 +54,26 @@ function Index() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 60, rotate: 12 }}
-            animate={{ opacity: 1, y: 0, rotate: 5 }}
+            initial={{ opacity: 0, y: 60 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.6, delay: 0.6, ease: [0.2, 0.8, 0.2, 1] }}
-            className="hidden md:flex col-span-5 justify-center"
+            className="hidden md:block col-span-5"
           >
-            <div className="polaroid animate-float" style={{ width: 280, ["--rot" as never]: "5deg" }}>
-              <div style={{ width: "100%", height: 340, overflow: "hidden" }}>
-                <img src={g2} alt="" className="w-full h-full object-cover" />
+            <div className="relative h-full flex items-center justify-end" style={{ paddingRight: 80 }}>
+              <div
+                className="polaroid animate-float"
+                style={{
+                  width: 260,
+                  padding: "10px 10px 10px 10px",
+                  ["--rot" as never]: "5deg",
+                  transform: "rotate(5deg)",
+                  boxShadow: "0 20px 40px rgba(0,0,0,0.15)",
+                }}
+              >
+                <div style={{ width: "100%", height: 320, overflow: "hidden" }}>
+                  <img src={g2} alt="" className="w-full h-full object-cover" />
+                </div>
               </div>
-              <div className="font-script text-center text-base mt-3 text-foreground/80">forever, yours</div>
             </div>
           </motion.div>
         </div>
@@ -96,17 +85,20 @@ function Index() {
         </motion.div>
       </FixedParallax>
 
-      {/* ── SECTION 2 · BEIGE CONTENT ─────────────────────────────── */}
+      {/* ── SECTION 2 · BEIGE · STACKED SWITCHING ─────────────────── */}
       <section className="bg-background py-32 lg:py-40">
-        <div className="mx-auto max-w-[1400px] px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-          <div className="lg:col-span-6">
+        <div className="mx-auto max-w-[1300px] px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+          <div>
             <p className="text-[11px] uppercase tracking-luxe text-muted-foreground mb-8">— a few words</p>
-            <h2 className="font-serif text-5xl md:text-7xl leading-[1.05]">
+            <h2 className="font-serif leading-[1.1]" style={{ fontSize: "64px", maxWidth: 420 }}>
               Award-winning
               <br />
-              <span className="font-script text-6xl md:text-8xl">wedding</span> photographer.
+              <span className="font-script" style={{ fontSize: "76px" }}>wedding</span> photographer.
             </h2>
-            <p className="mt-10 max-w-md text-base leading-relaxed text-muted-foreground">
+            <p
+              className="mt-10 text-muted-foreground leading-relaxed"
+              style={{ fontSize: 14, letterSpacing: "1.5px", maxWidth: 360 }}
+            >
               We don't chase moments — we let them arrive. Editorial in eye, documentary in heart.
               Every frame is grain, light, and the truth of being loved.
             </p>
@@ -115,13 +107,15 @@ function Index() {
             </Link>
           </div>
 
-          <div className="lg:col-span-6 relative h-[560px]">
-            <Polaroid src={g2} alt="Bride" caption="alex, tuscany" width={260} rotate={-6}
-              style={{ position: "absolute", top: 20, left: 20, zIndex: 1 }} imageHeight={340} />
-            <Polaroid src={g6} alt="Veil" caption="elsa, dolomites" width={230} rotate={5}
-              style={{ position: "absolute", top: 60, right: 40, zIndex: 2 }} imageHeight={300} delay={0.15} />
-            <Polaroid src={g1} alt="Rings" caption="i do." width={200} rotate={-3}
-              style={{ position: "absolute", bottom: 20, left: 120, zIndex: 3 }} imageHeight={240} delay={0.3} />
+          <div className="flex justify-center">
+            <StackedPolaroids
+              backImages={[g2, g6, g1]}
+              frontImage={g5}
+              backSize={{ w: 320, h: 420 }}
+              frontSize={{ w: 220, h: 280 }}
+              backRotate={0}
+              frontRotate={6}
+            />
           </div>
         </div>
       </section>
@@ -189,8 +183,8 @@ function Index() {
         </div>
       </FixedParallax>
 
-      {/* ── SECTION 6 · BEIGE · MEMORIES (SCATTERED) ──────────────── */}
-      <section className="bg-background py-32">
+      {/* ── SECTION 6 · BEIGE · SCATTER GALLERY ───────────────────── */}
+      <section className="bg-background" style={{ paddingTop: 100, paddingBottom: 100 }}>
         <div className="text-center px-6">
           <p className="text-[11px] uppercase tracking-luxe text-muted-foreground mb-3">03 — the archive</p>
           <h2 className="font-serif text-5xl md:text-6xl">
@@ -201,38 +195,7 @@ function Index() {
           </p>
         </div>
 
-        <div className="relative mx-auto max-w-[1500px] mt-16 h-[1100px] md:h-[900px]">
-          {scattered.map((p, i) => (
-            <motion.button
-              key={i}
-              initial={{ opacity: 0, y: 30, rotate: p.rotate * 1.5 }}
-              whileInView={{ opacity: 1, y: 0, rotate: p.rotate }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.9, delay: p.delay, ease: [0.2, 0.8, 0.2, 1] }}
-              onClick={() => setLightbox(i)}
-              className="polaroid animate-float absolute"
-              style={{
-                top: `${p.top}%`, left: `${p.left}%`,
-                width: p.width, zIndex: p.z,
-                ["--rot" as never]: `${p.rotate}deg`,
-                animationDelay: `${p.delay}s`,
-              }}
-            >
-              <div style={{ width: "100%", height: p.width * 1.15, overflow: "hidden" }}>
-                <img src={memoryImgs[i]} alt="" loading="lazy" className="w-full h-full object-cover" />
-              </div>
-              <div className="font-script text-center text-sm mt-2 text-foreground/70">
-                no. {String(i + 1).padStart(2, "0")}
-              </div>
-            </motion.button>
-          ))}
-        </div>
-
-        <div className="text-center mt-12">
-          <Link to="/memories" className="text-[11px] uppercase tracking-luxe border-b border-foreground pb-1">
-            See all memories →
-          </Link>
-        </div>
+        <ScatterGallery images={allImages.concat(allImages).slice(0, 13)} />
       </section>
 
       {/* ── SECTION 7 · PARALLAX · TESTIMONIAL CAROUSEL ───────────── */}
@@ -257,12 +220,6 @@ function Index() {
           </Link>
         </div>
       </section>
-
-      <Lightbox images={lb} index={lightbox}
-        onClose={() => setLightbox(null)}
-        onPrev={() => setLightbox((i) => i === null ? null : (i - 1 + lb.length) % lb.length)}
-        onNext={() => setLightbox((i) => i === null ? null : (i + 1) % lb.length)}
-      />
 
       <Footer />
     </div>

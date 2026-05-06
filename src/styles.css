@@ -104,7 +104,28 @@
 
   @keyframes float-y {
     0%,100% { transform: translateY(0) rotate(var(--rot,0deg)); }
-    50% { transform: translateY(-8px) rotate(var(--rot,0deg)); }
+    50% { transform: translateY(-12px) rotate(var(--rot,0deg)); }
   }
   .animate-float { animation: float-y 6s ease-in-out infinite; }
+
+  @keyframes floatSoft {
+    0%,100% { transform: translateY(0) rotate(var(--rot,0deg)); }
+    50% { transform: translateY(-8px) rotate(var(--rot,0deg)); }
+  }
+
+  @keyframes grain {
+    0%,100% { transform: translate(0,0); }
+    20% { transform: translate(-2%, 1%); }
+    40% { transform: translate(1%, -2%); }
+    60% { transform: translate(-1%, 2%); }
+    80% { transform: translate(2%, -1%); }
+  }
+  .grain-overlay::after {
+    content:""; position:absolute; inset:-50%;
+    background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px);
+    background-size: 3px 3px;
+    mix-blend-mode: overlay;
+    pointer-events:none;
+    animation: grain 1.6s steps(4) infinite;
+  }
 }

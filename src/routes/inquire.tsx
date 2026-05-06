@@ -1,75 +1,241 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
+import h1 from "@/assets/hero-1.jpg";
+import h2 from "@/assets/hero-2.jpg";
+import g1 from "@/assets/gallery-1.jpg";
+import g2 from "@/assets/gallery-2.jpg";
+import g3 from "@/assets/gallery-3.jpg";
+import g5 from "@/assets/gallery-5.jpg";
 
 export const Route = createFileRoute("/inquire")({
   head: () => ({
     meta: [
-      { title: "Inquire — Maison Lumière" },
-      { name: "description", content: "Tell us about your day. We'd love to hear from you." },
-      { property: "og:title", content: "Inquire — Maison Lumière" },
-      { property: "og:description", content: "Tell us about your day. We'd love to hear from you." },
+      { title: "Say Hello — Maison Lumière" },
+      { name: "description", content: "Ready to plan your big day? Send us a note — we reply within 48 hours." },
+      { property: "og:title", content: "Say Hello — Maison Lumière" },
+      { property: "og:description", content: "Ready to plan your big day? Send us a note — we reply within 48 hours." },
+      { property: "og:image", content: h1 },
     ],
   }),
   component: Inquire,
 });
 
+const fields = [
+  { k: "name", label: "YOUR NAME", type: "text" },
+  { k: "email", label: "EMAIL ADDRESS", type: "email" },
+  { k: "service", label: "TYPE OF SERVICE", type: "text" },
+  { k: "source", label: "HOW'D YOU FIND ME?", type: "text" },
+];
+
+const switchImages = [g2, g5, g1];
+
 function Inquire() {
   const [sent, setSent] = useState(false);
+  const [imgIdx, setImgIdx] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => setImgIdx((i) => (i + 1) % switchImages.length), 4500);
+    return () => clearInterval(id);
+  }, []);
+
   return (
-    <div className="bg-background text-foreground min-h-screen">
-      <Header />
-      <section className="pt-40 pb-32">
-        <div className="mx-auto max-w-[1100px] px-6 lg:px-12 grid md:grid-cols-2 gap-20">
-          <div>
-            <p className="text-[11px] uppercase tracking-luxe text-muted-foreground mb-6">— let's talk</p>
-            <h1 className="font-serif text-6xl md:text-7xl leading-[1.05]">Tell us about<br/>your <span className="font-script text-7xl md:text-8xl">day.</span></h1>
-            <p className="mt-8 text-muted-foreground leading-relaxed max-w-md">
-              We respond to every inquiry personally within 48 hours. Share a few details and we'll send our full collection guide.
-            </p>
-            <div className="mt-12 space-y-3 text-sm">
-              <p className="font-script text-2xl">hello@maisonlumiere.co</p>
-              <p className="text-muted-foreground">Paris · available worldwide</p>
+    <div
+      className="relative min-h-screen text-white"
+      style={{
+        backgroundImage: `url(${h2})`,
+        backgroundAttachment: "fixed",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+      {/* dark overlay */}
+      <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.45)" }} />
+
+      <div className="relative z-10">
+        <Header />
+        <motion.section
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+          className="min-h-screen flex items-center"
+          style={{ paddingTop: 120, paddingBottom: 80 }}
+        >
+          <div className="mx-auto w-full grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-20 items-center px-6 lg:px-12" style={{ maxWidth: 1200 }}>
+            {/* LEFT */}
+            <div>
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 0.95, y: 0 }}
+                transition={{ duration: 1.2, delay: 0.2 }}
+                className="font-script text-white"
+                style={{ fontSize: 64, lineHeight: 1 }}
+              >
+                Say Hello
+              </motion.h1>
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1, delay: 0.5 }}
+                className="font-sans text-white"
+                style={{ fontSize: 12, letterSpacing: "3px", marginTop: 10 }}
+              >
+                READY TO PLAN YOUR BIG DAY!
+              </motion.p>
+
+              {/* Polaroid stack */}
+              <div className="relative mt-16 hidden md:block" style={{ width: 360, height: 380 }}>
+                {/* BACK switching */}
+                <div
+                  className="polaroid absolute animate-float grain-overlay"
+                  style={{
+                    width: 240,
+                    padding: "10px",
+                    left: 0,
+                    top: 0,
+                    transform: "rotate(-4deg)",
+                    ["--rot" as never]: "-4deg",
+                    boxShadow: "0 20px 40px rgba(0,0,0,0.2)",
+                    zIndex: 1,
+                    overflow: "hidden",
+                  }}
+                >
+                  <div style={{ width: "100%", height: 320, overflow: "hidden", position: "relative" }}>
+                    <AnimatePresence>
+                      <motion.img
+                        key={imgIdx}
+                        src={switchImages[imgIdx]}
+                        alt=""
+                        initial={{ opacity: 0, scale: 1.05 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 1.2, ease: [0.4, 0, 0.2, 1] }}
+                        className="absolute inset-0 w-full h-full object-cover"
+                      />
+                    </AnimatePresence>
+                  </div>
+                </div>
+                {/* FRONT static */}
+                <div
+                  className="polaroid absolute animate-float"
+                  style={{
+                    width: 220,
+                    padding: "10px",
+                    right: -40,
+                    bottom: -30,
+                    transform: "rotate(5deg)",
+                    ["--rot" as never]: "5deg",
+                    boxShadow: "0 20px 40px rgba(0,0,0,0.2)",
+                    zIndex: 2,
+                    animationDelay: "1.2s",
+                  }}
+                >
+                  <div style={{ width: "100%", height: 300, overflow: "hidden" }}>
+                    <img src={g3} alt="" className="w-full h-full object-cover" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* RIGHT — FORM */}
+            <div>
+              {sent ? (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="border border-white/40 p-12 text-center"
+                >
+                  <p className="font-script text-4xl mb-4">merci.</p>
+                  <p className="text-white/80 text-sm" style={{ letterSpacing: "1.5px" }}>
+                    Your note is on its way. Camille will reply within 48 hours.
+                  </p>
+                </motion.div>
+              ) : (
+                <form onSubmit={(e) => { e.preventDefault(); setSent(true); }} className="space-y-[22px]">
+                  {fields.map((f, idx) => (
+                    <motion.div
+                      key={f.k}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6, delay: 0.3 + idx * 0.08 }}
+                    >
+                      <label
+                        className="block font-sans uppercase"
+                        style={{
+                          fontSize: 11,
+                          letterSpacing: "2px",
+                          color: "rgba(255,255,255,0.7)",
+                          marginBottom: 6,
+                        }}
+                      >
+                        {f.label}
+                      </label>
+                      <input
+                        required
+                        type={f.type}
+                        name={f.k}
+                        className="w-full bg-transparent text-white outline-none transition-colors focus:border-white"
+                        style={{
+                          height: 48,
+                          border: "1px solid rgba(255,255,255,0.5)",
+                          padding: "12px",
+                          fontSize: 14,
+                        }}
+                      />
+                    </motion.div>
+                  ))}
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.7 }}
+                  >
+                    <label
+                      className="block font-sans uppercase"
+                      style={{ fontSize: 11, letterSpacing: "2px", color: "rgba(255,255,255,0.7)", marginBottom: 6 }}
+                    >
+                      TELL ME ALL THE THINGS...
+                    </label>
+                    <textarea
+                      required
+                      name="message"
+                      className="w-full bg-transparent text-white outline-none focus:border-white resize-none"
+                      style={{
+                        height: 140,
+                        border: "1px solid rgba(255,255,255,0.5)",
+                        padding: "12px",
+                        fontSize: 14,
+                      }}
+                    />
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.6, delay: 0.9 }}
+                    className="pt-4"
+                  >
+                    <button
+                      type="submit"
+                      className="group inline-flex items-center font-sans uppercase text-white"
+                      style={{
+                        fontSize: 13,
+                        letterSpacing: "2px",
+                        paddingBottom: 4,
+                        borderBottom: "1px solid rgba(255,255,255,1)",
+                      }}
+                    >
+                      SEND IT
+                      <span className="ml-2 transition-transform duration-300 group-hover:translate-x-2">→</span>
+                    </button>
+                  </motion.div>
+                </form>
+              )}
             </div>
           </div>
-
-          <form
-            onSubmit={(e) => { e.preventDefault(); setSent(true); }}
-            className="space-y-8"
-          >
-            {sent ? (
-              <div className="border border-border p-12 text-center">
-                <p className="font-script text-3xl mb-3">merci.</p>
-                <p className="text-muted-foreground text-sm">Your note is on its way. Camille will reply soon.</p>
-              </div>
-            ) : (
-              <>
-                {[
-                  { k: "name", label: "Your name" },
-                  { k: "email", label: "Email", type: "email" },
-                  { k: "date", label: "Wedding date (approx.)" },
-                  { k: "location", label: "Location" },
-                ].map((f) => (
-                  <div key={f.k}>
-                    <label className="text-[10px] uppercase tracking-luxe text-muted-foreground">{f.label}</label>
-                    <input required type={f.type ?? "text"} name={f.k}
-                      className="mt-2 w-full bg-transparent border-b border-border focus:border-foreground outline-none py-3 font-serif text-lg transition-colors" />
-                  </div>
-                ))}
-                <div>
-                  <label className="text-[10px] uppercase tracking-luxe text-muted-foreground">Tell us your story</label>
-                  <textarea required rows={4} className="mt-2 w-full bg-transparent border-b border-border focus:border-foreground outline-none py-3 font-serif text-lg resize-none transition-colors"/>
-                </div>
-                <button type="submit" className="mt-4 inline-block text-[11px] uppercase tracking-luxe border-b border-foreground pb-1 hover:text-muted-foreground transition-colors">
-                  Send inquiry →
-                </button>
-              </>
-            )}
-          </form>
-        </div>
-      </section>
-      <Footer />
+        </motion.section>
+      </div>
     </div>
   );
 }
