@@ -131,7 +131,7 @@
     box-shadow:
       0 1px 2px oklch(0 0 0 / 0.08),
       0 12px 28px oklch(0 0 0 / 0.18);
-    transition: transform 0.5s cubic-bezier(0.2,0.8,0.2,1), box-shadow 0.5s;
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
   }
   .polaroid:hover {
     transform: rotate(0deg) scale(1.05) !important;
