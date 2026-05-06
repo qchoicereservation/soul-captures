@@ -41,7 +41,7 @@ export function Lightbox({ images, index, onClose, onPrev, onNext }: Props) {
           <motion.img
             key={index}
             initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
             src={images[index].src} alt={images[index].alt}
             className="max-h-[88vh] max-w-[90vw] object-contain shadow-2xl"
             onClick={(e) => e.stopPropagation()}
