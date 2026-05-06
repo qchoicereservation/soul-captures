@@ -18,7 +18,7 @@ export function FixedParallax({
   overlay = "soft",
   className = "",
   style,
-  switchInterval = 6500,
+  switchInterval = 6000,
 }: Props) {
   const images = Array.isArray(image) ? image : [image];
   const [i, setI] = useState(0);
@@ -41,20 +41,14 @@ export function FixedParallax({
       className={`relative w-full overflow-hidden ${className}`}
       style={{ height, ...style }}
     >
-      <div
-        className="absolute inset-0"
-        style={{
-          animation: "parallaxZoom 10s ease-in-out infinite alternate",
-          willChange: "transform",
-        }}
-      >
+      <div className="absolute inset-0">
         <AnimatePresence mode="sync">
           <motion.div
             key={i}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 1, ease: "easeInOut" }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
             className="absolute inset-0 parallax-bg"
             style={{
               backgroundImage: `url(${images[i]})`,
