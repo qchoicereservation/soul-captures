@@ -30,11 +30,10 @@ export function FixedParallax({
 
   return (
     <section
-      className={`relative w-full overflow-hidden ${className}`}
+      className={`relative w-full overflow-hidden parallax-bg ${className}`}
       style={{
         height,
         backgroundImage: `url(${image})`,
-        backgroundAttachment: "fixed",
         backgroundSize: "cover",
         backgroundPosition: "center",
         ...style,
