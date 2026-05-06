@@ -36,18 +36,19 @@ function Index() {
 
       {/* ── SECTION 1 · HERO PARALLAX ─────────────────────────────── */}
       <FixedParallax image={h1} height="100vh" overlay="soft">
-        <div className="mx-auto max-w-[1400px] w-full h-full px-6 lg:px-12 grid grid-cols-12 gap-8 items-center">
+        <div className="mx-auto max-w-[1400px] w-full h-full px-5 md:px-12 grid grid-cols-12 gap-6 md:gap-8 items-center pt-[var(--nav-h)] md:pt-0">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.4, delay: 0.3 }}
-            className="col-span-12 md:col-span-7"
+            className="col-span-12 md:col-span-7 text-center md:text-left"
+            style={{ maxWidth: "90%", marginInline: "auto" }}
           >
-            <p className="text-background/80 text-[11px] uppercase tracking-luxe mb-6">Maison Lumière · est. 2014</p>
-            <h1 className="font-serif text-background text-5xl md:text-7xl lg:text-8xl leading-[0.95]">
+            <p className="text-background/80 text-[11px] uppercase tracking-luxe mb-4 md:mb-6">Maison Lumière · est. 2014</p>
+            <h1 className="font-serif text-background text-[34px] md:text-7xl lg:text-8xl leading-[1.1] md:leading-[0.95]">
               Capturing love,
               <br />
-              <span className="font-script text-6xl md:text-8xl lg:text-9xl">stories</span> &amp; timeless
+              <span className="font-script text-[26px] md:text-8xl lg:text-9xl">stories</span> &amp; timeless
               <br />
               moments.
             </h1>
@@ -57,20 +58,20 @@ function Index() {
             initial={{ opacity: 0, y: 60 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.6, delay: 0.6, ease: [0.2, 0.8, 0.2, 1] }}
-            className="hidden md:block col-span-5"
+            className="col-span-12 md:col-span-5 flex justify-center md:justify-end mt-6 md:mt-0"
           >
-            <div className="relative h-full flex items-center justify-end" style={{ paddingRight: 80 }}>
+            <div className="relative md:pr-20">
               <div
                 className="polaroid animate-float"
                 style={{
-                  width: 260,
-                  padding: "10px 10px 10px 10px",
-                  ["--rot" as never]: "5deg",
-                  transform: "rotate(5deg)",
+                  width: "min(180px, 50vw)",
+                  padding: "8px",
+                  ["--rot" as never]: "3deg",
+                  transform: "rotate(3deg)",
                   boxShadow: "0 20px 40px rgba(0,0,0,0.15)",
                 }}
               >
-                <div style={{ width: "100%", height: 320, overflow: "hidden" }}>
+                <div style={{ width: "100%", aspectRatio: "1 / 1.25", overflow: "hidden" }}>
                   <img src={g2} alt="" className="w-full h-full object-cover" />
                 </div>
               </div>
@@ -79,7 +80,7 @@ function Index() {
         </div>
         <motion.div
           initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.5, duration: 1 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 text-background/80 text-[10px] uppercase tracking-luxe"
+          className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 text-background/80 text-[10px] uppercase tracking-luxe"
         >
           scroll ↓
         </motion.div>
