@@ -73,13 +73,13 @@ function ServicePage() {
             {layout.map((item, i) => (
               <motion.button
                 key={i}
-                initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.9, delay: (i % 3) * 0.1 }}
+                initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
                 onClick={() => setLightbox(i)}
                 className={`group relative col-span-12 ${item.col} ${item.aspect} overflow-hidden bg-muted`}
               >
-                <img src={item.src} alt="" loading="lazy" className="w-full h-full object-cover transition-transform duration-[1400ms] group-hover:scale-105" />
-                <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/20 transition-colors duration-500" />
+                <img src={item.src} alt="" loading="lazy" className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-102" />
+                <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/20 transition-colors duration-300" />
                 <span className="absolute bottom-4 right-5 text-background opacity-0 group-hover:opacity-100 transition-opacity text-[10px] uppercase tracking-luxe">view</span>
               </motion.button>
             ))}

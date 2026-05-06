@@ -57,13 +57,13 @@ function Portfolio() {
             {imgs.map((src, i) => (
               <motion.button
                 key={i}
-                initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-30px" }}
-                transition={{ duration: 0.8, delay: (i % 4) * 0.05 }}
+                initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-30px" }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
                 onClick={() => setLightbox(i)}
                 className={`group relative overflow-hidden bg-muted ${sizes[i % sizes.length]}`}
               >
-                <img src={src} alt="" loading="lazy" className="w-full h-full object-cover transition-transform duration-[1400ms] group-hover:scale-110" />
-                <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/25 transition-colors duration-500" />
+                <img src={src} alt="" loading="lazy" className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
+                <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/25 transition-colors duration-300" />
               </motion.button>
             ))}
           </div>

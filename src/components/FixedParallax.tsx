@@ -1,5 +1,6 @@
-import { useEffect, useState, type CSSProperties, type ReactNode } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useState, useRef, type CSSProperties, type ReactNode } from "react";
+import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface Props {
   image: string | string[];
@@ -22,6 +23,15 @@ export function FixedParallax({
 }: Props) {
   const images = Array.isArray(image) ? image : [image];
   const [i, setI] = useState(0);
+  const isMobile = useIsMobile();
+  const ref = useRef<HTMLElement>(null);
+
+  // Transform-based parallax for mobile/tablet
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+  const y = useTransform(scrollYProgress, [0, 1], ["-15%", "15%"]);
 
   useEffect(() => {
     if (images.length <= 1) return;
@@ -38,13 +48,14 @@ export function FixedParallax({
 
   return (
     <section
+      ref={ref}
       className={`relative w-full overflow-hidden ${className}`}
       style={{ height, ...style }}
     >
-      <div
-        className="absolute inset-0"
+      <motion.div
+        className="absolute inset-[-15%]"
         style={{
-          animation: "parallaxZoom 10s ease-in-out infinite alternate",
+          y: isMobile ? y : 0,
           willChange: "transform",
         }}
       >
@@ -54,8 +65,8 @@ export function FixedParallax({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 1, ease: "easeInOut" }}
-            className="absolute inset-0 parallax-bg"
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className={`absolute inset-0 ${isMobile ? "" : "parallax-bg"}`}
             style={{
               backgroundImage: `url(${images[i]})`,
               backgroundSize: "cover",
@@ -63,7 +74,7 @@ export function FixedParallax({
             }}
           />
         </AnimatePresence>
-      </div>
+      </motion.div>
       {overlay !== "none" && <div className={`absolute inset-0 ${overlayClass}`} />}
       <div className="relative z-10 h-full w-full">{children}</div>
     </section>

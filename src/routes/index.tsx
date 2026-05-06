@@ -38,9 +38,9 @@ function Index() {
       <FixedParallax image={[h1, h3]} height="100vh" overlay="soft" switchInterval={6500}>
         <div className="mx-auto max-w-[1400px] w-full h-full px-5 md:px-12 grid grid-cols-12 gap-6 md:gap-8 items-center pt-[var(--nav-h)] md:pt-0">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
             className="col-span-12 md:col-span-7 text-center md:text-left"
             style={{ maxWidth: "90%", marginInline: "auto" }}
           >
@@ -55,9 +55,9 @@ function Index() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.05, ease: "easeOut" }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
             className="col-span-12 md:col-span-5 flex justify-center md:justify-end mt-6 md:mt-0"
           >
             <div className="relative md:pr-[60px]">
@@ -124,8 +124,8 @@ function Index() {
       <FixedParallax image={h2} height="80vh" overlay="dark">
         <div className="h-full w-full flex items-center justify-center text-center px-6">
           <motion.div
-            initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }} transition={{ duration: 1.4 }}
+            initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}
+            viewport={{ once: true }} transition={{ duration: 0.4, ease: "easeOut" }}
           >
             <p className="font-script text-background/90 text-4xl md:text-6xl">a slow afternoon</p>
             <p className="mt-4 text-background/70 text-[11px] uppercase tracking-luxe">— moments worth keeping</p>
@@ -156,7 +156,7 @@ function Index() {
                 {i > 0 && <div className="hidden md:block vrule absolute left-0 top-10 bottom-10" />}
                 <div className="aspect-square overflow-hidden bg-muted">
                   <img src={s.hero} alt={s.name} loading="lazy"
-                    className="w-full h-full object-cover transition-transform duration-[1400ms] group-hover:scale-105" />
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-102" />
                 </div>
                 <div className="hairline mt-8" />
                 <h3 className="font-serif text-3xl mt-6">{s.name}</h3>
@@ -175,7 +175,7 @@ function Index() {
         <div className="h-full w-full flex items-center justify-center text-center">
           <motion.h3
             initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
-            transition={{ duration: 1.4 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
             className="font-script text-background text-5xl md:text-7xl"
           >
             scattered memories

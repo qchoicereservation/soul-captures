@@ -68,6 +68,13 @@
 
 @layer base {
   * { border-color: var(--color-border); }
+  
+  /* Global fast transitions */
+  a, button, [class*="hover:"] {
+    transition-duration: 0.25s !important;
+    transition-timing-function: ease-out !important;
+  }
+  
   :root { --nav-h: 80px; }
   @media (max-width: 767px) { :root { --nav-h: 70px; } }
   body {
@@ -93,11 +100,20 @@
 
   /* laptop typography refinement (1024–1440px) */
   @media (min-width: 1024px) and (max-width: 1440px) {
-    h1 { font-size: clamp(40px, 3vw, 44px) !important; line-height: 1.1 !important; letter-spacing: -0.4px !important; }
-    h2 { font-size: clamp(30px, 2.4vw, 34px) !important; line-height: 1.1 !important; letter-spacing: -0.3px !important; }
+    h1 { font-size: clamp(28px, 3vw, 40px) !important; line-height: 1.1 !important; letter-spacing: -0.4px !important; }
+    h2 { font-size: clamp(24px, 2.5vw, 32px) !important; line-height: 1.1 !important; letter-spacing: -0.3px !important; }
     h3 { font-size: 20px !important; line-height: 1.2 !important; }
-    h1 .font-script, h2 .font-script { font-size: clamp(24px, 1.9vw, 26px) !important; line-height: 1 !important; }
+    h1 .font-script, h2 .font-script { font-size: clamp(26px, 2.2vw, 36px) !important; line-height: 1 !important; }
     p { font-size: 13px; }
+  }
+
+  /* tablet typography (768–1024px) */
+  @media (min-width: 768px) and (max-width: 1024px) {
+    h1 { font-size: clamp(28px, 4vw, 38px) !important; line-height: 1.15 !important; }
+    h2 { font-size: clamp(24px, 3.5vw, 32px) !important; line-height: 1.15 !important; }
+    h3 { font-size: 20px !important; line-height: 1.2 !important; }
+    h1 .font-script, h2 .font-script { font-size: clamp(28px, 4vw, 40px) !important; line-height: 1 !important; }
+    p { font-size: 14px; }
   }
 }
 
@@ -106,14 +122,34 @@
   .font-serif { font-family: var(--font-serif); }
   .tracking-luxe { letter-spacing: 0.35em; }
 
-  /* Premium calligraphic highlight */
+  /* Premium calligraphic highlight - use Allura for handwritten look */
   .highlight-script {
-    font-family: var(--font-script);
-    font-size: 1.2em;
+    font-family: 'Allura', cursive !important;
+    font-size: 1.15em;
     color: #6f6a64;
     letter-spacing: 1px;
     display: inline-block;
     transform: translateY(3px);
+  }
+
+  /* Force Allura on script font class for visible handwritten style */
+  .font-script {
+    font-family: 'Allura', cursive !important;
+    letter-spacing: 0.5px;
+  }
+  
+  /* Script text in headings on light backgrounds gets warm muted color */
+  h1 .font-script,
+  h2 .font-script,
+  h3 .font-script {
+    color: #6f6a64;
+  }
+  
+  /* Script text over dark/parallax backgrounds inherits parent color */
+  .text-background .font-script,
+  h1.text-background .font-script,
+  h2.text-background .font-script {
+    color: inherit;
   }
 
   @keyframes parallaxZoom {
@@ -131,10 +167,10 @@
     box-shadow:
       0 1px 2px oklch(0 0 0 / 0.08),
       0 12px 28px oklch(0 0 0 / 0.18);
-    transition: transform 0.5s cubic-bezier(0.2,0.8,0.2,1), box-shadow 0.5s;
+    transition: transform 0.25s ease-out, box-shadow 0.25s ease-out;
   }
   .polaroid:hover {
-    transform: rotate(0deg) scale(1.05) !important;
+    transform: rotate(0deg) scale(1.02) !important;
     box-shadow: 0 4px 6px oklch(0 0 0 / 0.1), 0 24px 50px oklch(0 0 0 / 0.25);
     z-index: 50;
   }
@@ -150,13 +186,13 @@
 
   @keyframes float-y {
     0%,100% { transform: translateY(0) rotate(var(--rot,0deg)); }
-    50% { transform: translateY(-12px) rotate(var(--rot,0deg)); }
+    50% { transform: translateY(-6px) rotate(var(--rot,0deg)); }
   }
-  .animate-float { animation: float-y 6s ease-in-out infinite; }
+  .animate-float { animation: float-y 4s ease-in-out infinite; }
 
   @keyframes floatSoft {
     0%,100% { transform: translateY(0) rotate(var(--rot,0deg)); }
-    50% { transform: translateY(-8px) rotate(var(--rot,0deg)); }
+    50% { transform: translateY(-4px) rotate(var(--rot,0deg)); }
   }
 
   @keyframes grain {

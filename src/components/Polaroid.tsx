@@ -18,10 +18,10 @@ export function Polaroid({
 }: Props) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30, rotate: rotate * 1.4 }}
-      whileInView={{ opacity: 1, y: 0, rotate }}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1, rotate }}
       viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.9, delay, ease: [0.2, 0.8, 0.2, 1] }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
       className={`polaroid ${className}`}
       style={{ width, transform: `rotate(${rotate}deg)`, ["--rot" as never]: `${rotate}deg`, ...style }}
     >

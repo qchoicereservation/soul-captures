@@ -37,10 +37,10 @@ export function ScatterGallery({ images }: Props) {
               return (
                 <motion.button
                   key={k}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
                   viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.7, delay: (k % 4) * 0.06 }}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
                   onClick={() => setLb(k)}
                   className="block w-full"
                   style={{ marginTop: stagger, transform: `rotate(${rot}deg)` }}
@@ -94,10 +94,10 @@ export function ScatterGallery({ images }: Props) {
           return (
             <motion.button
               key={k}
-              initial={{ opacity: 0, y: 30, rotate: rot * 1.4 }}
-              whileInView={{ opacity: 1, y: 0, rotate: rot }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1, rotate: rot }}
               viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.9, delay: (k % 4) * 0.08, ease: [0.2, 0.8, 0.2, 1] }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
               onClick={() => setLb(k)}
               className="polaroid absolute"
               style={{
@@ -106,7 +106,7 @@ export function ScatterGallery({ images }: Props) {
                 width: w,
                 zIndex: z,
                 ["--rot" as never]: `${rot}deg`,
-                animation: "floatSoft 8s ease-in-out infinite",
+                animation: "floatSoft 5s ease-in-out infinite",
                 animationDelay: `${(k % 5) * 0.4}s`,
               }}
             >

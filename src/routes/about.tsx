@@ -42,8 +42,8 @@ function About() {
       <FixedParallax image={h3} height="90vh" overlay="soft">
         <div className="mx-auto max-w-[1400px] w-full h-full px-6 lg:px-12 flex items-end pb-24">
           <motion.div
-            initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.4, delay: 0.3 }} className="max-w-2xl"
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+            transition={{ duration: 0.4, ease: "easeOut" }} className="max-w-2xl"
           >
             <p className="text-background/80 text-[11px] uppercase tracking-luxe mb-6">— behind the lens</p>
             <h1 className="font-serif text-background text-5xl md:text-7xl lg:text-8xl leading-[0.95]">
@@ -82,7 +82,7 @@ function About() {
         <div className="h-full flex items-center justify-center text-center px-6">
           <motion.p
             initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
-            transition={{ duration: 1.4 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
             className="font-serif italic text-background text-2xl md:text-4xl max-w-3xl leading-snug"
           >
             "I believe in golden hours, in long pauses, in the dignity of quiet moments."
@@ -98,8 +98,8 @@ function About() {
           <div className="space-y-2">
             {timeline.map((t, i) => (
               <motion.div key={t.y}
-                initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}
-                transition={{ duration: 0.7, delay: i * 0.08 }}
+                initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
                 className="grid grid-cols-12 gap-6 py-6 border-b border-border items-baseline">
                 <span className="col-span-3 md:col-span-2 font-serif text-3xl">{t.y}</span>
                 <span className="col-span-9 md:col-span-10 text-base md:text-lg text-muted-foreground">{t.t}</span>
