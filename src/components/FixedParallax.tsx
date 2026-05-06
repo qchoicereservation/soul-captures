@@ -30,15 +30,19 @@ export function FixedParallax({
 
   return (
     <section
-      className={`relative w-full overflow-hidden parallax-bg ${className}`}
-      style={{
-        height,
-        backgroundImage: `url(${image})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        ...style,
-      }}
+      className={`relative w-full overflow-hidden ${className}`}
+      style={{ height, ...style }}
     >
+      <div
+        className="absolute inset-0 parallax-bg"
+        style={{
+          backgroundImage: `url(${image})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          animation: "parallaxZoom 14s ease-in-out infinite alternate",
+          willChange: "transform",
+        }}
+      />
       {overlay !== "none" && <div className={`absolute inset-0 ${overlayClass}`} />}
       <div className="relative z-10 h-full w-full">{children}</div>
     </section>
