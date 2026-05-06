@@ -35,7 +35,7 @@ function ServicePage() {
   const { service } = Route.useLoaderData();
   const [lightbox, setLightbox] = useState<number | null>(null);
 
-  const lbImages = service.gallery.map((src, i) => ({ src, alt: `${service.name} ${i + 1}` }));
+  const lbImages = service.gallery.map((src: string, i: number) => ({ src, alt: `${service.name} ${i + 1}` }));
 
   // editorial layout positions
   const layout: { src: string; col: string; aspect: string }[] = [
