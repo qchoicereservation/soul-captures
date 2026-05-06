@@ -55,9 +55,9 @@ function Index() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 60 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.6, delay: 0.6, ease: [0.2, 0.8, 0.2, 1] }}
+            transition={{ duration: 0.65, delay: 0.1, ease: [0.2, 0.8, 0.2, 1] }}
             className="col-span-12 md:col-span-5 flex justify-center md:justify-end mt-6 md:mt-0"
           >
             <div className="relative md:pr-[60px]">
