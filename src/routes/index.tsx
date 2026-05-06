@@ -62,16 +62,15 @@ function Index() {
           >
             <div className="relative md:pr-[60px]">
               <div
-                className="polaroid animate-float"
+                className="polaroid animate-float w-[200px] md:w-[300px]"
                 style={{
-                  width: "min(300px, 60vw)",
                   padding: "10px",
                   ["--rot" as never]: "5deg",
                   transform: "rotate(5deg)",
                   boxShadow: "0 25px 50px rgba(0,0,0,0.18)",
                 }}
               >
-                <div style={{ width: "100%", height: "min(380px, 76vw)", overflow: "hidden" }}>
+                <div className="h-[250px] md:h-[380px] w-full overflow-hidden">
                   <img src={g2} alt="" className="w-full h-full object-cover" />
                 </div>
               </div>
