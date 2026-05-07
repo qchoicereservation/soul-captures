@@ -29,18 +29,25 @@ export function FixedParallax({
     return () => clearInterval(t);
   }, [images.length, switchInterval]);
 
-  const overlayClass =
+  const overlayStyle: CSSProperties =
     overlay === "dark"
-      ? "bg-gradient-to-b from-foreground/60 via-foreground/40 to-foreground/70"
+      ? {
+          background:
+            "linear-gradient(to bottom, rgba(0,0,0,0.40), rgba(0,0,0,0.62))",
+        }
       : overlay === "soft"
-      ? "bg-gradient-to-b from-foreground/20 via-foreground/5 to-foreground/30"
-      : "";
+      ? {
+          background:
+            "linear-gradient(to bottom, rgba(0,0,0,0.30), rgba(0,0,0,0.50))",
+        }
+      : {};
 
   return (
     <section
       className={`relative w-full overflow-hidden ${className}`}
       style={{ height, ...style }}
     >
+      {/* Layer 1 — parallax image */}
       <div className="absolute inset-0">
         <AnimatePresence mode="sync">
           <motion.div
@@ -58,8 +65,19 @@ export function FixedParallax({
           />
         </AnimatePresence>
       </div>
-      {overlay !== "none" && <div className={`absolute inset-0 ${overlayClass}`} />}
-      <div className="relative z-10 h-full w-full">{children}</div>
+
+      {/* Layer 2 — dark overlay */}
+      {overlay !== "none" && (
+        <div className="absolute inset-0 z-[1]" style={overlayStyle} />
+      )}
+
+      {/* Layer 3 — content */}
+      <div
+        className="relative z-[2] h-full w-full"
+        style={{ textShadow: "0 2px 10px rgba(0,0,0,0.25)" }}
+      >
+        {children}
+      </div>
     </section>
   );
 }

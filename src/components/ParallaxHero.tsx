@@ -20,6 +20,7 @@ export function ParallaxHero({ images, intervalMs = 4500 }: Props) {
 
   return (
     <div ref={ref} className="relative h-screen w-full overflow-hidden bg-foreground">
+      {/* Layer 1 — parallax image */}
       <motion.div style={{ y, scale: scaleScroll }} className="absolute inset-0">
         <AnimatePresence mode="sync">
           <motion.img
@@ -33,8 +34,17 @@ export function ParallaxHero({ images, intervalMs = 4500 }: Props) {
             className="absolute inset-0 w-full h-full object-cover"
           />
         </AnimatePresence>
-        <div className="absolute inset-0 bg-gradient-to-b from-foreground/30 via-foreground/10 to-foreground/40" />
       </motion.div>
+
+      {/* Layer 2 — dark overlay (outside the motion div so it doesn't move) */}
+      <div
+        className="absolute inset-0 z-[1]"
+        style={{
+          background: "linear-gradient(to bottom, rgba(0,0,0,0.30), rgba(0,0,0,0.52))",
+        }}
+      />
+
+      {/* Layer 3 — content slot (unused in current usage but kept for extensibility) */}
     </div>
   );
 }
