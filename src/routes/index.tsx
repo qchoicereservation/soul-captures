@@ -182,10 +182,8 @@ function Index() {
       {/* ── SECTION 6 · BEIGE · SCATTER GALLERY ───────────────────── */}
       <section className="bg-background" style={{ paddingTop: 100, paddingBottom: 100 }}>
         <div className="text-center px-6">
-          <p className="text-[11px] uppercase tracking-luxe text-muted-foreground mb-3">03 — the archive</p>
-          <h2 className="font-serif text-5xl md:text-6xl">
-            Loose <span className="font-script text-6xl md:text-7xl">moments</span>
-          </h2>
+          <p className="font-label text-[11px] text-muted-foreground mb-3">03 — the archive</p>
+          <h2 className="font-script">Loose moments</h2>
           <p className="mt-6 max-w-md mx-auto text-sm text-muted-foreground">
             Paper-thin and faintly tilted. Tap any to open.
           </p>
