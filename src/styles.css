@@ -1,7 +1,7 @@
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Pinyon+Script&family=Allura&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Allura&family=Ubuntu:wght@300;400;500;700&family=Poppins:wght@300;400;500;600&display=swap");
 
 @custom-variant dark (&:is(.dark *));
 
@@ -33,15 +33,17 @@
   --color-ink: var(--ink);
   --color-blush: var(--blush);
   --color-sand: var(--sand);
-  --font-serif: "Playfair Display", serif;
-  --font-script: "Pinyon Script", "Allura", cursive;
-  --font-sans: "Inter", sans-serif;
+  --font-serif: "Allura", cursive;
+  --font-script: "Allura", cursive;
+  --font-sans: "Poppins", sans-serif;
+  --font-label: "Ubuntu", sans-serif;
 }
 
 :root {
   --radius: 0.25rem;
-  --cream: oklch(0.965 0.018 80);
-  --ink: oklch(0.22 0.015 60);
+  /* Warm cream #F6F3EA, near-black ink #292927 */
+  --cream: oklch(0.961 0.014 88);
+  --ink: oklch(0.235 0.003 75);
   --blush: oklch(0.88 0.035 40);
   --sand: oklch(0.78 0.04 70);
 
