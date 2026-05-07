@@ -158,7 +158,7 @@ function Index() {
                 <h3 className="font-script mt-6">{s.name}</h3>
                 <p className="font-script text-xl text-muted-foreground -mt-1">{s.tagline}</p>
                 <p className="mt-4 text-sm text-muted-foreground leading-relaxed">{s.description}</p>
-                <span className="mt-6 inline-block text-[11px] uppercase tracking-luxe border-b border-foreground pb-1">More →</span>
+                <span className="font-label mt-6 inline-block text-[11px] border-b border-foreground pb-1">More →</span>
               </Link>
             ))}
           </div>
