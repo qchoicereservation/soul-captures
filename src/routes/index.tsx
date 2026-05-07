@@ -17,15 +17,6 @@ import g5 from "@/assets/gallery-5.jpg";
 import g6 from "@/assets/gallery-6.jpg";
 
 export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Maison Lumière — Editorial Wedding Photography" },
-      { name: "description", content: "Cinematic, editorial wedding & elopement photography. Capturing love, stories and timeless moments — Paris & worldwide." },
-      { property: "og:title", content: "Maison Lumière — Editorial Wedding Photography" },
-      { property: "og:description", content: "Cinematic, editorial wedding & elopement photography." },
-      { property: "og:image", content: h1 },
-    ],
-  }),
   component: Index,
 });
 

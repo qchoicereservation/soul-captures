@@ -10,15 +10,6 @@ import g3 from "@/assets/gallery-3.jpg";
 import g5 from "@/assets/gallery-5.jpg";
 
 export const Route = createFileRoute("/inquire")({
-  head: () => ({
-    meta: [
-      { title: "Say Hello — Maison Lumière" },
-      { name: "description", content: "Ready to plan your big day? Send us a note — we reply within 48 hours." },
-      { property: "og:title", content: "Say Hello — Maison Lumière" },
-      { property: "og:description", content: "Ready to plan your big day? Send us a note — we reply within 48 hours." },
-      { property: "og:image", content: h1 },
-    ],
-  }),
   component: Inquire,
 });
 

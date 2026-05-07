@@ -7,14 +7,6 @@ import { Lightbox } from "@/components/Lightbox";
 import { allImages } from "@/lib/portfolio-data";
 
 export const Route = createFileRoute("/portfolio")({
-  head: () => ({
-    meta: [
-      { title: "Portfolio — Maison Lumière" },
-      { name: "description", content: "A complete archive of editorial weddings, engagements and elopements." },
-      { property: "og:title", content: "Portfolio — Maison Lumière" },
-      { property: "og:description", content: "A complete archive of editorial weddings, engagements and elopements." },
-    ],
-  }),
   component: Portfolio,
 });
 

@@ -13,15 +13,6 @@ import g4 from "@/assets/gallery-4.jpg";
 import g6 from "@/assets/gallery-6.jpg";
 
 export const Route = createFileRoute("/about")({
-  head: () => ({
-    meta: [
-      { title: "About — Maison Lumière" },
-      { name: "description", content: "A photographer telling stories with light, grain, and quiet attention." },
-      { property: "og:title", content: "About — Maison Lumière" },
-      { property: "og:description", content: "A photographer telling stories with light, grain, and quiet attention." },
-      { property: "og:image", content: portrait },
-    ],
-  }),
   component: About,
 });
 

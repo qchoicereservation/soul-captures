@@ -7,19 +7,6 @@ import { Lightbox } from "@/components/Lightbox";
 import { services } from "@/lib/portfolio-data";
 
 export const Route = createFileRoute("/services/$slug")({
-  head: ({ params }) => {
-    const s = services[params.slug as keyof typeof services];
-    if (!s) return {};
-    return {
-      meta: [
-        { title: `${s.name} — Maison Lumière` },
-        { name: "description", content: s.description },
-        { property: "og:title", content: `${s.name} — Maison Lumière` },
-        { property: "og:description", content: s.description },
-        { property: "og:image", content: s.hero },
-      ],
-    };
-  },
   loader: ({ params }) => {
     const s = services[params.slug as keyof typeof services];
     if (!s) throw notFound();

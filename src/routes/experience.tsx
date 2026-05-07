@@ -14,15 +14,6 @@ import g5 from "@/assets/gallery-5.jpg";
 import g6 from "@/assets/gallery-6.jpg";
 
 export const Route = createFileRoute("/experience")({
-  head: () => ({
-    meta: [
-      { title: "The Experience — Maison Lumière" },
-      { name: "description", content: "An editorial, cinematic experience from first hello to final gallery." },
-      { property: "og:title", content: "The Experience — Maison Lumière" },
-      { property: "og:description", content: "An editorial, cinematic experience from first hello to final gallery." },
-      { property: "og:image", content: h2 },
-    ],
-  }),
   component: Experience,
 });
 
