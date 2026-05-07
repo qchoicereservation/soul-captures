@@ -35,7 +35,7 @@ function Index() {
       <Header />
 
       {/* ── SECTION 1 · HERO PARALLAX ─────────────────────────────── */}
-      <FixedParallax image={[h1, h3]} height="100vh" overlay="soft" switchInterval={6500}>
+      <FixedParallax image={[h1, h3]} height="100vh" overlay="soft" switchInterval={6000}>
         <div className="mx-auto max-w-[1400px] w-full h-full px-5 md:px-12 grid grid-cols-12 gap-6 md:gap-8 items-center pt-[var(--nav-h)] md:pt-0">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
