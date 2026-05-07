@@ -155,7 +155,7 @@ function Index() {
                     className="w-full h-full object-cover transition-transform duration-[1400ms] group-hover:scale-105" />
                 </div>
                 <div className="hairline mt-8" />
-                <h3 className="font-serif text-3xl mt-6">{s.name}</h3>
+                <h3 className="font-script mt-6">{s.name}</h3>
                 <p className="font-script text-xl text-muted-foreground -mt-1">{s.tagline}</p>
                 <p className="mt-4 text-sm text-muted-foreground leading-relaxed">{s.description}</p>
                 <span className="mt-6 inline-block text-[11px] uppercase tracking-luxe border-b border-foreground pb-1">More →</span>
