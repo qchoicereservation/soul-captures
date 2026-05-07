@@ -18,7 +18,7 @@ export function FixedParallax({
   overlay = "soft",
   className = "",
   style,
-  switchInterval = 6000,
+  switchInterval = 4000,
 }: Props) {
   const images = Array.isArray(image) ? image : [image];
   const [i, setI] = useState(0);
