@@ -136,13 +136,11 @@ function Index() {
         <div className="mx-auto max-w-[1400px] px-6 lg:px-12">
           <div className="flex items-end justify-between mb-16">
             <div>
-              <p className="text-[11px] uppercase tracking-luxe text-muted-foreground mb-3">02 — what we offer</p>
-              <h2 className="font-serif text-5xl md:text-6xl">
-                A house of <span className="font-script text-6xl md:text-7xl">services</span>
-              </h2>
+              <p className="font-label text-[11px] text-muted-foreground mb-3">02 — what we offer</p>
+              <h2 className="font-script">A house of services</h2>
             </div>
-            <Link to="/portfolio" className="hidden md:inline-block text-[11px] uppercase tracking-luxe border-b border-foreground pb-1">
-              View portfolio
+            <Link to="/portfolio" className="font-label hidden md:inline-block text-[11px] border-b border-foreground pb-1">
+              View portfolio →
             </Link>
           </div>
 
