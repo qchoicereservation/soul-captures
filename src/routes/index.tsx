@@ -202,15 +202,13 @@ function Index() {
       {/* ── SECTION 8 · BEIGE · CTA ──────────────────────────────── */}
       <section className="bg-background py-32">
         <div className="mx-auto max-w-[1100px] px-6 lg:px-12 text-center">
-          <p className="text-[11px] uppercase tracking-luxe text-muted-foreground mb-6">— let's begin</p>
-          <h2 className="font-serif text-5xl md:text-7xl leading-[1.05]">
-            Tell us your <span className="font-script text-6xl md:text-8xl">story</span>.
-          </h2>
+          <p className="font-label text-[11px] text-muted-foreground mb-6">— let's begin</p>
+          <h2 className="font-script leading-[1.05]">Tell us your story.</h2>
           <p className="mt-8 max-w-md mx-auto text-muted-foreground">
             Now booking destinations through 2027. We answer every inquiry personally, within 48 hours.
           </p>
-          <Link to="/inquire" className="inline-block mt-12 px-10 py-4 border border-foreground text-[11px] uppercase tracking-luxe hover:bg-foreground hover:text-background transition-colors">
-            Inquire
+          <Link to="/inquire" className="font-label inline-block mt-12 text-[13px] border-b border-foreground pb-1 hover:text-muted-foreground hover:border-muted-foreground transition-colors duration-[250ms]">
+            Inquire →
           </Link>
         </div>
       </section>
