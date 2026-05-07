@@ -89,21 +89,19 @@ function Index() {
       <section className="bg-background py-32 lg:py-40">
         <div className="mx-auto max-w-[1300px] px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           <div>
-            <p className="text-[11px] uppercase tracking-luxe text-muted-foreground mb-8">— a few words</p>
-            <h2 className="font-serif leading-[1.1]" style={{ fontSize: "64px", maxWidth: 420 }}>
-              Award-winning
-              <br />
-              <span className="font-script" style={{ fontSize: "76px" }}>wedding</span> photographer.
+            <p className="font-label text-[11px] text-muted-foreground mb-8">— a few words</p>
+            <h2 className="font-script leading-[1.1]" style={{ maxWidth: 460 }}>
+              Award-winning wedding photographer.
             </h2>
             <p
               className="mt-10 text-muted-foreground leading-relaxed"
-              style={{ fontSize: 14, letterSpacing: "1.5px", maxWidth: 360 }}
+              style={{ maxWidth: 360 }}
             >
               We don't chase moments — we let them arrive. Editorial in eye, documentary in heart.
               Every frame is grain, light, and the truth of being loved.
             </p>
-            <Link to="/about" className="inline-block mt-10 text-[11px] uppercase tracking-luxe border-b border-foreground pb-1 hover:text-muted-foreground hover:border-muted-foreground transition-colors">
-              Read our story
+            <Link to="/about" className="font-label inline-block mt-10 text-[11px] border-b border-foreground pb-1 hover:text-muted-foreground hover:border-muted-foreground transition-colors duration-[250ms]">
+              Read our story →
             </Link>
           </div>
 
