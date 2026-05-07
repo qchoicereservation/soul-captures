@@ -44,11 +44,11 @@ function Index() {
             className="col-span-12 md:col-span-7 text-center md:text-left"
             style={{ maxWidth: "90%", marginInline: "auto" }}
           >
-            <p className="text-background/80 text-[11px] uppercase tracking-luxe mb-4 md:mb-6">Maison Lumière · est. 2014</p>
-            <h1 className="font-serif text-background text-[34px] md:text-7xl lg:text-8xl leading-[1.1] md:leading-[0.95]">
+            <p className="font-label text-background/80 text-[11px] mb-4 md:mb-6">Maison Lumière · est. 2014</p>
+            <h1 className="font-script text-background leading-[1.1]">
               Capturing love,
               <br />
-              <span className="font-script text-[26px] md:text-8xl lg:text-9xl">stories</span> &amp; timeless
+              stories &amp; timeless
               <br />
               moments.
             </h1>
