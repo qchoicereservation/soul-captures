@@ -35,7 +35,7 @@ function Index() {
       <Header />
 
       {/* ── SECTION 1 · HERO PARALLAX ─────────────────────────────── */}
-      <FixedParallax image={[h1, h3]} height="100vh" overlay="soft" switchInterval={6500}>
+      <FixedParallax image={[h1, h3]} height="100vh" overlay="soft" switchInterval={6000}>
         <div className="mx-auto max-w-[1400px] w-full h-full px-5 md:px-12 grid grid-cols-12 gap-6 md:gap-8 items-center pt-[var(--nav-h)] md:pt-0">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -44,11 +44,11 @@ function Index() {
             className="col-span-12 md:col-span-7 text-center md:text-left"
             style={{ maxWidth: "90%", marginInline: "auto" }}
           >
-            <p className="text-background/80 text-[11px] uppercase tracking-luxe mb-4 md:mb-6">Maison Lumière · est. 2014</p>
-            <h1 className="font-serif text-background text-[34px] md:text-7xl lg:text-8xl leading-[1.1] md:leading-[0.95]">
+            <p className="font-label text-background/80 text-[11px] mb-4 md:mb-6">Maison Lumière · est. 2014</p>
+            <h1 className="font-script text-background leading-[1.1]">
               Capturing love,
               <br />
-              <span className="font-script text-[26px] md:text-8xl lg:text-9xl">stories</span> &amp; timeless
+              stories &amp; timeless
               <br />
               moments.
             </h1>
@@ -89,21 +89,19 @@ function Index() {
       <section className="bg-background py-32 lg:py-40">
         <div className="mx-auto max-w-[1300px] px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           <div>
-            <p className="text-[11px] uppercase tracking-luxe text-muted-foreground mb-8">— a few words</p>
-            <h2 className="font-serif leading-[1.1]" style={{ fontSize: "64px", maxWidth: 420 }}>
-              Award-winning
-              <br />
-              <span className="font-script" style={{ fontSize: "76px" }}>wedding</span> photographer.
+            <p className="font-label text-[11px] text-muted-foreground mb-8">— a few words</p>
+            <h2 className="font-script leading-[1.1]" style={{ maxWidth: 460 }}>
+              Award-winning wedding photographer.
             </h2>
             <p
               className="mt-10 text-muted-foreground leading-relaxed"
-              style={{ fontSize: 14, letterSpacing: "1.5px", maxWidth: 360 }}
+              style={{ maxWidth: 360 }}
             >
               We don't chase moments — we let them arrive. Editorial in eye, documentary in heart.
               Every frame is grain, light, and the truth of being loved.
             </p>
-            <Link to="/about" className="inline-block mt-10 text-[11px] uppercase tracking-luxe border-b border-foreground pb-1 hover:text-muted-foreground hover:border-muted-foreground transition-colors">
-              Read our story
+            <Link to="/about" className="font-label inline-block mt-10 text-[11px] border-b border-foreground pb-1 hover:text-muted-foreground hover:border-muted-foreground transition-colors duration-[250ms]">
+              Read our story →
             </Link>
           </div>
 
@@ -138,13 +136,11 @@ function Index() {
         <div className="mx-auto max-w-[1400px] px-6 lg:px-12">
           <div className="flex items-end justify-between mb-16">
             <div>
-              <p className="text-[11px] uppercase tracking-luxe text-muted-foreground mb-3">02 — what we offer</p>
-              <h2 className="font-serif text-5xl md:text-6xl">
-                A house of <span className="font-script text-6xl md:text-7xl">services</span>
-              </h2>
+              <p className="font-label text-[11px] text-muted-foreground mb-3">02 — what we offer</p>
+              <h2 className="font-script">A house of services</h2>
             </div>
-            <Link to="/portfolio" className="hidden md:inline-block text-[11px] uppercase tracking-luxe border-b border-foreground pb-1">
-              View portfolio
+            <Link to="/portfolio" className="font-label hidden md:inline-block text-[11px] border-b border-foreground pb-1">
+              View portfolio →
             </Link>
           </div>
 
@@ -159,10 +155,10 @@ function Index() {
                     className="w-full h-full object-cover transition-transform duration-[1400ms] group-hover:scale-105" />
                 </div>
                 <div className="hairline mt-8" />
-                <h3 className="font-serif text-3xl mt-6">{s.name}</h3>
+                <h3 className="font-script mt-6">{s.name}</h3>
                 <p className="font-script text-xl text-muted-foreground -mt-1">{s.tagline}</p>
                 <p className="mt-4 text-sm text-muted-foreground leading-relaxed">{s.description}</p>
-                <span className="mt-6 inline-block text-[11px] uppercase tracking-luxe border-b border-foreground pb-1">More →</span>
+                <span className="font-label mt-6 inline-block text-[11px] border-b border-foreground pb-1">More →</span>
               </Link>
             ))}
           </div>
@@ -186,10 +182,8 @@ function Index() {
       {/* ── SECTION 6 · BEIGE · SCATTER GALLERY ───────────────────── */}
       <section className="bg-background" style={{ paddingTop: 100, paddingBottom: 100 }}>
         <div className="text-center px-6">
-          <p className="text-[11px] uppercase tracking-luxe text-muted-foreground mb-3">03 — the archive</p>
-          <h2 className="font-serif text-5xl md:text-6xl">
-            Loose <span className="font-script text-6xl md:text-7xl">moments</span>
-          </h2>
+          <p className="font-label text-[11px] text-muted-foreground mb-3">03 — the archive</p>
+          <h2 className="font-script">Loose moments</h2>
           <p className="mt-6 max-w-md mx-auto text-sm text-muted-foreground">
             Paper-thin and faintly tilted. Tap any to open.
           </p>
@@ -208,15 +202,13 @@ function Index() {
       {/* ── SECTION 8 · BEIGE · CTA ──────────────────────────────── */}
       <section className="bg-background py-32">
         <div className="mx-auto max-w-[1100px] px-6 lg:px-12 text-center">
-          <p className="text-[11px] uppercase tracking-luxe text-muted-foreground mb-6">— let's begin</p>
-          <h2 className="font-serif text-5xl md:text-7xl leading-[1.05]">
-            Tell us your <span className="font-script text-6xl md:text-8xl">story</span>.
-          </h2>
+          <p className="font-label text-[11px] text-muted-foreground mb-6">— let's begin</p>
+          <h2 className="font-script leading-[1.05]">Tell us your story.</h2>
           <p className="mt-8 max-w-md mx-auto text-muted-foreground">
             Now booking destinations through 2027. We answer every inquiry personally, within 48 hours.
           </p>
-          <Link to="/inquire" className="inline-block mt-12 px-10 py-4 border border-foreground text-[11px] uppercase tracking-luxe hover:bg-foreground hover:text-background transition-colors">
-            Inquire
+          <Link to="/inquire" className="font-label inline-block mt-12 text-[13px] border-b border-foreground pb-1 hover:text-muted-foreground hover:border-muted-foreground transition-colors duration-[250ms]">
+            Inquire →
           </Link>
         </div>
       </section>
