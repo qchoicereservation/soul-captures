@@ -1,7 +1,12 @@
 backend:
   name: git-gateway
 
-media_folder: "public/uploads"
-public_folder: "/uploads"
-
-collections: []
+collections:
+  - name: "site"
+    label: "Site"
+    files:
+      - label: "Homepage"
+        name: "homepage"
+        file: "homepage.yml"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
